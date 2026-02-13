@@ -23,9 +23,12 @@ double rezultatas;
 
 void outputas (const vector<Studentas> &grupe);
 int main()
-{ Studentas A;
+{ int s;
+Studentas A;
 vector<Studentas>grupe;
-for(int ii=0;ii<2;ii++)
+cout << "kiek yra studentu? " << endl;
+cin>>s;
+for(int ii=0;ii<s;ii++)
     {
 
     cout<<"iveskite varda ir pavarde"<<endl;
@@ -45,9 +48,10 @@ A.rezultatas=sum*1.0/(n*1.0)*0.4+A.egzaminas*0.6;
 grupe.push_back(A);
 A.paz.clear();
 }
+cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Rezultatas" << endl;
 for(auto A:grupe){
-    cout << left << setw(3) << A.vardas << " " << A.pavarde << "   ";
-cout<<setw(10)<<fixed<<setprecision(2)<<A.rezultatas<<endl;
+    cout << left << setw(20) << A.vardas << setw(20) << A.pavarde;
+cout<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<endl;
 }
     return 0;
 }
