@@ -10,13 +10,16 @@ using std::cin;
 using std::left;
 using std::right;
 using std::setw;
+using std::fixed;
+using std::setprecision;
 
 struct Studentas{
 string vardas="A",pavarde="B";
 int *pazymiai;
 vector<int>paz;
 int egzaminas;
-double rezultatas;};
+double rezultatas;
+};
 
 void outputas (const vector<Studentas> &grupe);
 int main()
@@ -43,10 +46,8 @@ grupe.push_back(A);
 A.paz.clear();
 }
 for(auto A:grupe){
-    cout << left << setw(10) << A.vardas << " " << A.pavarde << endl;
-for(auto a:A.paz)
-{cout<<setw(3)<<a;}
-cout<<setw(10)<<A.egzaminas<<setw(20)<<A.rezultatas<<endl;
+    cout << left << setw(3) << A.vardas << " " << A.pavarde << "   ";
+cout<<setw(10)<<fixed<<setprecision(2)<<A.rezultatas<<endl;
 }
     return 0;
 }
