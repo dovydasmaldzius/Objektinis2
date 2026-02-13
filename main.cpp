@@ -38,7 +38,7 @@ sum+=temp;
 
     cout<<"iveskite egzamino pazymi"<<endl;
 cin>>A.egzaminas;
-A.rezultatas=sum*1.0/(n*1.0)*0,4+A.egzaminas*0,6;
+A.rezultatas=sum*1.0/(n*1.0)*0.4+A.egzaminas*0.6;
 grupe.push_back(A);
 A.paz.clear();
 }
