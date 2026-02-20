@@ -1,9 +1,11 @@
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
 #include <algorithm>
 #include <limits>
+#include <cctype>
 
 using std::string;
 using std::vector;
@@ -37,11 +39,18 @@ vector<Studentas>grupe; //saugomi visi studentai
     cout << "kiek yra studentu? " << endl;
 cin>>s;
 
-for(int ii=0;ii<s;ii++) {
-    cout<<"iveskite varda ir pavarde"<<endl;
+for(int ii=0; ii<s; ii++){
+while(true) {
+    cout<<"Iveskite varda ir pavarde"<<endl;
 cin>>A.vardas>>A.pavarde;
-int n;
+bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
+if(hasDigit) {
+    cout << "Prasome ivesti varda ir pavarde dar karta" << endl;
+    continue; }
+    break;
+}
 
+int n;
 while(true) { //ciklas, kuris veikia iki tol, kol vartotojas įves klaidingą reikšmę
     cout<<"iveskite pazymiu skaiciu:"<<endl;
 cin>>n;
@@ -69,6 +78,7 @@ break; } //baigiasi ciklas, jei įvestis teisinga
 }
 }
 
+
 while(true) {
     cout<<"iveskite egzamino pazymi"<<endl;
 cin>>A.egzaminas;
@@ -78,6 +88,7 @@ cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; 
 }
+
 
 A.paz.push_back(A.egzaminas); //laikinai įdedame egzamino pažymį į pažymių vektoriu, tam, kad galėtume teisingai apskaičiuoti medianą
 
