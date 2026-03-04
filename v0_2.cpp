@@ -38,6 +38,7 @@ double mediana=0;
 void outputas (const vector<Studentas> &grupe);
 
 int main() {
+    std::ios::sync_with_stdio(false);
 int pasirinkimas;
 int m;
 Studentas A;
