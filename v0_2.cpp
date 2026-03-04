@@ -40,15 +40,27 @@ void outputas (const vector<Studentas> &grupe);
 int main() {
     std::ios::sync_with_stdio(false);
 int pasirinkimas;
+int rusiavimas;
 int m;
 Studentas A;
 vector<Studentas>grupe; //saugomi visi studentai
-cout<<"Jei norite studentus ir pazymius ivesti ranka, spauskite 1, jei tik pazymius norite generuoti atsitiktinai, spauskite 2, jei norite studentu vardus, pavardes ir pazymius generuoti atskirai, spauskite 3, jei norite duomenis nuskaityti is failo, spauskite 4"<<endl;
+cout<<"Kaip norite ivesti duomenis?"<<endl;
+cout<<"1 - studentu vardus, pavardes ir pazymius ivesti ranka"<<endl;
+cout<<"2 - studentu vardus ir pavardes ivesti ranka, pazymius generuoti atsitiktinai"<<endl;
+cout<<"3 - studentu vardus, pavardes ir pazymius generuoti atsitiktinai"<<endl;
+cout<<"4 - duomenis nuskaityti is failo"<<endl;
 cin>>pasirinkimas;
 
 if(pasirinkimas==1) {
+    while(true) {
     cout << "kiek yra studentu? " << endl;
 cin>>m;
+if(cin.fail() || m < 0) { 
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+cin.clear();
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
+    else break; }
+
 for(int ii=0; ii<m; ii++) {
 while(true) {
     cout<<"Iveskite varda ir pavarde"<<endl;
@@ -65,7 +77,7 @@ while(true) { //ciklas, kuris veikia iki tol, kol vartotojas įves klaidingą re
     cout<<"iveskite pazymiu skaiciu:"<<endl;
 cin>>n;
 if(cin.fail() || n < 0) { //tikrina, ar įvestas domuo yra teigiamas skaičius
-    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! "<<endl;
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
 cin.clear(); //klaida pašalinama
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); } //
     else break; } //baigiamas ciklas, jei įvestis teisinga
@@ -118,8 +130,15 @@ A.paz.clear(); }//išvalomi pažymiai, kad juos būtų galima įvesti kitam stud
 
 
 else if(pasirinkimas==2) {
+    while(true) {
     cout << "kiek yra studentu? " << endl;
 cin>>m;
+if(cin.fail() || m < 0) { 
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+cin.clear();
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
+    else break; }
+
 for(int ii=0; ii<m; ii++){
 while(true) {
     cout<<"Iveskite varda ir pavarde"<<endl;
@@ -135,7 +154,7 @@ while(true) {
     cout<<"iveskite pazymiu skaiciu:"<<endl;
 cin>>n;
 if(cin.fail() || n < 0) {
-    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! "<<endl;
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; }
@@ -173,8 +192,15 @@ A.paz.clear(); }
 
 
 else if(pasirinkimas==3) {
-    cout<<"kiek yra studentu? "<<endl;
+    while(true) {
+    cout << "kiek yra studentu? " << endl;
 cin>>m;
+if(cin.fail() || m < 0) { 
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+cin.clear();
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
+    else break; }
+
 vector<string> firstNames={"Jonas","Petras","Ona","Lina","Mantas","Egle","Darius","Ruta","Tomas","Ieva"};
 vector<string> lastNames={"Petraitis","Kazlauskas","Jankauskas","Stankevicius","Vilkas","Daugela","Miskinis","Jankauskiene","Zalys","Baranauskas"};
 for(int ii=0; ii<m; ii++) {
@@ -217,6 +243,10 @@ A.paz.clear(); }
 
 
 else if(pasirinkimas==4) {
+    cout<<"Kaip norite rusiuoti duomenis? Pasirinkite: "<<endl;
+    cout<<"1 - rusiuoti pagal galutini rezultata"<<endl;
+    cout<<"2 - rusiuoti pagal mediana"<<endl;
+cin>>rusiavimas;
 std::ifstream fd("kursiokai.txt");
     string temp;
 std::getline(fd,temp);
@@ -248,21 +278,50 @@ A.rezultatas=sum*1.0/15*0.4 + A.egzaminas*0.6;
 grupe.push_back(A); }
 fd.close(); }
 
-
-
-
+if(pasirinkimas==4) {
+    if(rusiavimas==1) {
+    sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
+return a.rezultatas<b.rezultatas;
+});
+}
+else if(rusiavimas==2) {
+    sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
+return a.mediana<b.mediana;
+});
+}
 else {
-cout<<"Prasome pasirinkti viena is skaiciu 1, 2, 3 arba 4\n"; 
+    cout<<"Prasome pasirinkti tik 1 arba 2!\n"; }
 }
 
 
 
+    cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
+if(pasirinkimas==4) {
+if(rusiavimas==1)
+    cout << setw(20) << "Galutinis";
+else
+    cout << setw(20) << "Mediana"; 
+}
+else {
+    cout << setw(20) << "Galutinis" << setw(20) << "Mediana";
+}
+cout<<endl;
 
-    cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Rezultatas" << setw(20) << "Mediana" << endl;
-for(auto A:grupe){
+
+
+
+for(const auto &A:grupe) {
     cout << left << setw(20) << A.vardas << setw(20) << A.pavarde;
-    cout<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas;
-    cout<<setw(20)<<A.mediana<<endl;
+if(pasirinkimas==4) {
+if(rusiavimas==1)
+    cout << setw(20) << fixed << setprecision(2) << A.rezultatas;
+else
+    cout << setw(20) << A.mediana;
+}
+else {
+    cout << setw(20) << fixed << setprecision(2) << A.rezultatas << setw(20) << A.mediana;
+}
+    cout<<endl;
 }
     return 0;
 }
