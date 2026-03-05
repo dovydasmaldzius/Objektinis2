@@ -25,6 +25,7 @@ using std::streamsize;
 using std::max;
 using std::ifstream;
 using std::getline;
+using std::ofstream;
 
 
 struct Studentas {
@@ -278,6 +279,9 @@ A.rezultatas=sum*1.0/15*0.4 + A.egzaminas*0.6;
 grupe.push_back(A); }
 fd.close(); }
 
+
+
+
 if(pasirinkimas==4) {
     if(rusiavimas==1) {
     sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
@@ -293,8 +297,13 @@ else {
     cout<<"Prasome pasirinkti tik 1 arba 2!\n"; }
 }
 
+int isvedimas;
+    cout<<"Kur norite matyti rezultatus?"<<endl;
+    cout<<"1 - ekrane"<<endl;
+    cout<<"2 - faile rezultatai.txt"<<endl;
+cin>>isvedimas;
 
-
+if(isvedimas==1) {
     cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
 if(pasirinkimas==4) {
 if(rusiavimas==1)
@@ -305,10 +314,7 @@ else
 else {
     cout << setw(20) << "Galutinis" << setw(20) << "Mediana";
 }
-cout<<endl;
-
-
-
+    cout<<endl;
 
 for(const auto &A:grupe) {
     cout << left << setw(20) << A.vardas << setw(20) << A.pavarde;
@@ -322,6 +328,43 @@ else {
     cout << setw(20) << fixed << setprecision(2) << A.rezultatas << setw(20) << A.mediana;
 }
     cout<<endl;
+}
+}
+
+else if(isvedimas==2){
+
+ofstream fr("rezultatai.txt");
+
+fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde";
+
+if(pasirinkimas==4) {
+if(rusiavimas==1)
+    fr<<setw(20)<<"Galutinis";
+else
+    fr<<setw(20)<<"Mediana";
+}
+else {
+    fr<<setw(20)<<"Galutinis"<<setw(20)<<"Mediana";
+}
+    fr<<endl;
+
+for(const auto &A:grupe) {
+    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde;
+
+if(pasirinkimas==4) {
+if(rusiavimas==1)
+    fr<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas;
+else
+    fr<<setw(20)<<A.mediana;
+}
+else {
+    fr<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<setw(20)<<A.mediana;
+}
+    fr<<endl;
+}
+
+fr.close();
+    cout<<"Prasome patikrinti faila rezultatai.txt"<<endl;
 }
     return 0;
 }
