@@ -39,7 +39,9 @@ double mediana=0;
 void outputas (const vector<Studentas> &grupe);
 
 int main() {
+    cin.tie(nullptr);
     std::ios::sync_with_stdio(false);
+    srand(time(NULL));
 int pasirinkimas;
 int rusiavimas;
 int m;
@@ -257,15 +259,17 @@ else if(pasirinkimas==4) {
     cout<<"1 - rusiuoti pagal galutini rezultata"<<endl;
     cout<<"2 - rusiuoti pagal mediana"<<endl;
 cin>>rusiavimas;
-std::ifstream fd("kursiokai.txt");
+std::ifstream fd("kursiokai1mln.txt");
     string temp;
 std::getline(fd,temp);
+
+grupe.reserve(1000000);
 
 while(fd>>A.vardas>>A.pavarde) {
 A.paz.clear();
     int sum=0;
 
-for(int i=0;i<15;i++) {
+for(int i=0;i<7;i++) {
     int pazymys;
 fd>>pazymys;
 A.paz.push_back(pazymys);
@@ -283,7 +287,7 @@ else
 
 A.paz.pop_back();
 
-A.rezultatas=sum*1.0/15*0.4 + A.egzaminas*0.6;
+A.rezultatas=sum*1.0/7*0.4 + A.egzaminas*0.6;
 
 grupe.push_back(A); }
 fd.close(); }
