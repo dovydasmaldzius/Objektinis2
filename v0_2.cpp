@@ -45,12 +45,21 @@ int rusiavimas;
 int m;
 Studentas A;
 vector<Studentas>grupe; //saugomi visi studentai
-cout<<"Kaip norite ivesti duomenis?"<<endl;
-cout<<"1 - studentu vardus, pavardes ir pazymius ivesti ranka"<<endl;
-cout<<"2 - studentu vardus ir pavardes ivesti ranka, pazymius generuoti atsitiktinai"<<endl;
-cout<<"3 - studentu vardus, pavardes ir pazymius generuoti atsitiktinai"<<endl;
-cout<<"4 - duomenis nuskaityti is failo"<<endl;
+
+while(true) {
+    cout<<"Kaip norite ivesti duomenis?"<<endl;
+    cout<<"1 - studentu vardus, pavardes ir pazymius ivesti ranka"<<endl;
+    cout<<"2 - studentu vardus ir pavardes ivesti ranka, pazymius generuoti atsitiktinai"<<endl;
+    cout<<"3 - studentu vardus, pavardes ir pazymius generuoti atsitiktinai"<<endl;
+    cout<<"4 - duomenis nuskaityti is failo"<<endl;
 cin>>pasirinkimas;
+if(cin.fail() || pasirinkimas < 1 || pasirinkimas > 4){
+    cout<<"Prasome ivesti tik skaicius 1, 2, 3 arba 4!"<<endl;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+else break;
+}
 
 if(pasirinkimas==1) {
     while(true) {
@@ -297,11 +306,24 @@ else {
     cout<<"Prasome pasirinkti tik 1 arba 2!\n"; }
 }
 
+
+
+
 int isvedimas;
+while(true) {
     cout<<"Kur norite matyti rezultatus?"<<endl;
     cout<<"1 - ekrane"<<endl;
     cout<<"2 - faile rezultatai.txt"<<endl;
 cin>>isvedimas;
+if(cin.fail() || (isvedimas!=1 && isvedimas!=2)) {
+    cout<<"Prasome pasirinkti tik skaiciu 1 arba 2!"<<endl;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+else break;
+}
+
+
 
 if(isvedimas==1) {
     cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
@@ -332,9 +354,7 @@ else {
 }
 
 else if(isvedimas==2){
-
 ofstream fr("rezultatai.txt");
-
 fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde";
 
 if(pasirinkimas==4) {
