@@ -9,6 +9,8 @@
 #include <ctime>
 #include <ctime>
 #include <fstream>
+#include <chrono>
+#include <sstream>
 
 using std::string;
 using std::vector;
@@ -30,22 +32,19 @@ using std::ofstream;
 
 struct Studentas {
 string vardas="A",pavarde="B";
-vector<int>paz;
+vector<int>paz; //vektorių masyvas su namų darbų pažymiais
 int egzaminas;
 double rezultatas=0;
 double mediana=0;
 };
 
-void outputas (const vector<Studentas> &grupe);
-
 int main() {
-    cin.tie(nullptr);
-    std::ios::sync_with_stdio(false);
-    srand(time(NULL));
+    std::ios::sync_with_stdio(false); //duomenų srauto sinchronizavimas su C funkcijomis išjungiamas, kad būtų pasiektas didesnis efektyvumas
+    srand(time(NULL)); //naudojamas, kad funkcija rand() kiekvieną kartą generuotų ne tas pačias reikšmes
 int pasirinkimas;
 int rusiavimas;
 int m;
-Studentas A;
+Studentas A; //vienas studentas, kurio duomenys bus įvedami, o vėliau įdedami į grupę
 vector<Studentas>grupe; //saugomi visi studentai
 
 while(true) {
@@ -65,33 +64,33 @@ else break;
 
 if(pasirinkimas==1) {
     while(true) {
-    cout << "kiek yra studentu? " << endl;
+    cout << "kiek yra studentu? \n";
 cin>>m;
 if(cin.fail() || m < 0) { 
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; }
 
 for(int ii=0; ii<m; ii++) {
 while(true) {
-    cout<<"Iveskite varda ir pavarde"<<endl;
+    cout<<"Iveskite varda ir pavarde: \n";
 cin>>A.vardas>>A.pavarde;
 bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
 if(hasDigit) {
-    cout << "Prasome ivesti varda ir pavarde dar karta" << endl;
+    cout << "Prasome ivesti varda ir pavarde dar karta \n";
     continue; }
     break;
 }
 
 int n;
 while(true) { //ciklas, kuris veikia iki tol, kol vartotojas įves klaidingą reikšmę
-    cout<<"iveskite pazymiu skaiciu:"<<endl;
+    cout<<"iveskite pazymiu skaiciu: \n";
 cin>>n;
-if(cin.fail() || n < 0) { //tikrina, ar įvestas domuo yra teigiamas skaičius
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+if(cin.fail() || n < 0) {
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
 cin.clear(); //klaida pašalinama
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); } //
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; } //baigiamas ciklas, jei įvestis teisinga
         
 int temp; //laikinas pažymys
@@ -99,10 +98,10 @@ int sum=0;
 
 for(int i=0;i<n;i++) {
 while(true) {
-    cout<<"iveskite pazymi: "<<endl;
+    cout<<"iveskite pazymi: \n";
 cin>>temp;
-if(cin.fail() || temp < 1 || temp > 10) { //tikrina, ar įvestas domuo yra skaičius nuo 1 iki 10
-    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! "<<endl;
+if(cin.fail() || temp < 1 || temp > 10) {
+    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! \n";
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else {
@@ -113,10 +112,10 @@ break; } //baigiasi ciklas, jei įvestis teisinga
 }
 
 while(true) {
-    cout<<"iveskite egzamino pazymi"<<endl;
+    cout<<"iveskite egzamino pazymi: \n";
 cin>>A.egzaminas;
 if(cin.fail() || A.egzaminas < 1 || A.egzaminas > 10) {
-    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10"<<endl;
+    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! \n";
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; 
@@ -124,7 +123,7 @@ cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
 
 A.paz.push_back(A.egzaminas); //laikinai įdedame egzamino pažymį į pažymių vektoriu, tam, kad galėtume teisingai apskaičiuoti medianą
 
-sort(A.paz.begin(), A.paz.end()); //pažymiai yra surūšiuojami didėjimo tvarka
+sort(A.paz.begin(), A.paz.end()); //pažymiai surikiuojami, kad būtų galima apskaičiuoti medianą
 
 int kiekis = A.paz.size(); //skaičiuojama, kiek yra pažymių
 
@@ -143,37 +142,37 @@ A.paz.clear(); }//išvalomi pažymiai, kad juos būtų galima įvesti kitam stud
 
 else if(pasirinkimas==2) {
     while(true) {
-    cout << "kiek yra studentu? " << endl;
+    cout << "kiek yra studentu? \n";
 cin>>m;
 if(cin.fail() || m < 0) { 
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; }
 
 for(int ii=0; ii<m; ii++){
 while(true) {
-    cout<<"Iveskite varda ir pavarde"<<endl;
+    cout<<"Iveskite varda ir pavarde \n";
 cin>>A.vardas>>A.pavarde;
 bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
 if(hasDigit) {
-    cout << "Prasome ivesti varda ir pavarde dar karta" << endl;
+    cout << "Prasome ivesti varda ir pavarde dar karta \n";
     continue; }
     break;
 }
 int n;
 while(true) {
-    cout<<"iveskite pazymiu skaiciu:"<<endl;
+    cout<<"iveskite pazymiu skaiciu: \n";
 cin>>n;
 if(cin.fail() || n < 0) {
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; }
         
 int sum=0;
 
-    cout<<"Atsiktinai sugeneruoti "<<ii+1<<" - ojo studento pazymiai: "<<endl;
+    cout<<"Atsiktinai sugeneruoti "<<ii+1<<" - ojo studento pazymiai: \n";
 for(int i=0;i<n;i++) {
 int temp = (rand() % 10) + 1;
 A.paz.push_back(temp);
@@ -182,7 +181,7 @@ sum+=temp;
     cout<<endl; }
         
 A.egzaminas = (rand() % 10) + 1;
-    cout<<"Atsitiktinai sugeneruotas "<<ii+1<<" - ojo studento egzamino pazymys: "<<A.egzaminas<<endl;
+    cout<<"Atsitiktinai sugeneruotas "<<ii+1<<" - ojo studento egzamino pazymys: "<<A.egzaminas<<"\n";
 
 A.paz.push_back(A.egzaminas);
         
@@ -205,10 +204,10 @@ A.paz.clear(); }
 
 else if(pasirinkimas==3) {
     while(true) {
-    cout << "kiek yra studentu? " << endl;
+    cout << "kiek yra studentu? \n";
 cin>>m;
 if(cin.fail() || m < 0) { 
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! "<<endl;
+    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
     else break; }
@@ -222,17 +221,17 @@ A.pavarde = lastNames[rand() % lastNames.size()];
     int n=(rand() % 10)+1;
     int sum=0;
 
-    cout<<"Atsiktinai sugeneruoti "<<ii+1<<" - ojo studento pazymiai: "<<endl;
+    cout<<"Atsiktinai sugeneruoti "<<ii+1<<" - ojo studento pazymiai: \n";
 for(int i=0; i<n; i++) {
     int temp = (rand() % 10)+1;
 A.paz.push_back(temp);
     sum += temp;
     
     cout<<temp<<" ";
-    cout<<endl;}
+    cout<<"\n";}
 
 A.egzaminas = (rand() % 10) + 1;
-    cout<<"Atsitiktinai sugeneruotas "<<ii+1<<" - ojo studento egzamino pazymys: "<<A.egzaminas<<endl;
+    cout<<"Atsitiktinai sugeneruotas "<<ii+1<<" - ojo studento egzamino pazymys: "<<A.egzaminas<<"\n";
 
 A.paz.push_back(A.egzaminas);
 
@@ -255,42 +254,44 @@ A.paz.clear(); }
 
 
 else if(pasirinkimas==4) {
-    cout<<"Kaip norite rusiuoti duomenis? Pasirinkite: "<<endl;
-    cout<<"1 - rusiuoti pagal galutini rezultata"<<endl;
-    cout<<"2 - rusiuoti pagal mediana"<<endl;
+    cout<<"Kaip norite rusiuoti duomenis? Pasirinkite: \n";
+    cout<<"1 - rusiuoti pagal galutini rezultata \n";
+    cout<<"2 - rusiuoti pagal mediana \n";
 cin>>rusiavimas;
-std::ifstream fd("kursiokai1mln.txt");
-    string temp;
-std::getline(fd,temp);
+std::ifstream fd("kursiokai.txt");
+string temp;
+getline(fd, temp); //nuskaitoma antraste
 
-grupe.reserve(1000000);
-
-while(fd>>A.vardas>>A.pavarde) {
-A.paz.clear();
-    int sum=0;
-
-for(int i=0;i<7;i++) {
+while(getline(fd, temp)) { //skaitomos visos kitos eilutės, kol jų yra
+    std::stringstream ss(temp); //eilutė paverčiama į srauto objektą, kad būtų galima lengviau išskirti duomenis
+ss>>A.vardas>>A.pavarde;
+vector<int> pazymiai; //laikinai saugomi pazymiai
     int pazymys;
-fd>>pazymys;
-A.paz.push_back(pazymys);
-sum+=pazymys; }
+    int sum = 0;
 
-fd>>A.egzaminas;
-A.paz.push_back(A.egzaminas);
+    while(ss >> pazymys) {
+pazymiai.push_back(pazymys); //pažymys pridedamas į laikinojo vektoriaus masyvą, kol yra skaitomų pažymių
+}
+    A.egzaminas=pazymiai.back(); //paima paskutinį pažymį kaip egzamino pažymį
+    pazymiai.pop_back(); //pašalina paskutinį pažymį iš vektoriaus, nes jis jau yra priskirtas egzaminui
+    A.paz=pazymiai; //likusius pažymius priskiria namų darbų pažymiams
+for(int paz:A.paz) { 
+sum+=paz;
+}
 
-sort(A.paz.begin(), A.paz.end());
+sort(A.paz.begin(), A.paz.end()); //surūšiuoja pažymius nuo mažiausio iki didžiausio
     int kiekis=A.paz.size();
 if(kiekis % 2 == 0)
     A.mediana = (A.paz[kiekis/2 - 1] + A.paz[kiekis/2]) / 2.0;
 else
     A.mediana = A.paz[kiekis/2];
 
-A.paz.pop_back();
-
-A.rezultatas=sum*1.0/7*0.4 + A.egzaminas*0.6;
-
-grupe.push_back(A); }
-fd.close(); }
+    A.rezultatas=(sum*1.0/A.paz.size())*0.4 + A.egzaminas*0.6;
+    A.paz.clear(); //išvalomi pažymiai, kad būtų galima įvesti kitam studentui
+    grupe.push_back(A); //studentas įdedamas į grupę
+}
+fd.close(); 
+}
 
 
 
@@ -298,12 +299,12 @@ fd.close(); }
 if(pasirinkimas==4) {
     if(rusiavimas==1) {
     sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.rezultatas<b.rezultatas;
+return a.rezultatas>b.rezultatas;
 });
 }
 else if(rusiavimas==2) {
     sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.mediana<b.mediana;
+return a.mediana>b.mediana;
 });
 }
 else {
@@ -315,12 +316,12 @@ else {
 
 int isvedimas;
 while(true) {
-    cout<<"Kur norite matyti rezultatus?"<<endl;
-    cout<<"1 - ekrane"<<endl;
-    cout<<"2 - faile rezultatai.txt"<<endl;
+    cout<<"Kur norite matyti rezultatus? \n";
+    cout<<"1 - ekrane \n";
+    cout<<"2 - faile rezultatai.txt \n";
 cin>>isvedimas;
 if(cin.fail() || (isvedimas!=1 && isvedimas!=2)) {
-    cout<<"Prasome pasirinkti tik skaiciu 1 arba 2!"<<endl;
+    cout<<"Prasome pasirinkti tik skaiciu 1 arba 2! \n";
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
@@ -328,6 +329,7 @@ else break;
 }
 
 
+auto start = std::chrono::high_resolution_clock::now(); //fiksuojamas tikslus laikas prieš operacijos atlikimą, kad būtų galima apskaičiuoti, kiek laiko užtrunka duomenų išvedimas
 
 if(isvedimas==1) {
     cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
@@ -340,9 +342,9 @@ else
 else {
     cout << setw(20) << "Galutinis" << setw(20) << "Mediana";
 }
-    cout<<endl;
+    cout<<"\n";
 
-for(const auto &A:grupe) {
+for(const auto &A:grupe) { //naudojama esamo objekto grupe tik adresas, kad būtų galima išvengti nereikalingo kopijavimo
     cout << left << setw(20) << A.vardas << setw(20) << A.pavarde;
 if(pasirinkimas==4) {
 if(rusiavimas==1)
@@ -353,7 +355,7 @@ else
 else {
     cout << setw(20) << fixed << setprecision(2) << A.rezultatas << setw(20) << A.mediana;
 }
-    cout<<endl;
+    cout<<"\n";
 }
 }
 
@@ -370,9 +372,9 @@ else
 else {
     fr<<setw(20)<<"Galutinis"<<setw(20)<<"Mediana";
 }
-    fr<<endl;
+    fr<<"\n";
 
-for(const auto &A:grupe) {
+for(const auto &A:grupe) { //naudojama esamo objekto grupe tik adresas, kad būtų galima išvengti nereikalingo kopijavimo
     fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde;
 
 if(pasirinkimas==4) {
@@ -384,11 +386,17 @@ else
 else {
     fr<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<setw(20)<<A.mediana;
 }
-    fr<<endl;
+    fr<<"\n";
 }
 
 fr.close();
-    cout<<"Prasome patikrinti faila rezultatai.txt"<<endl;
+    cout<<"Prasome patikrinti faila rezultatai.txt \n";
 }
+
+auto end = std::chrono::high_resolution_clock::now(); //fiksuojamas tikslus laikas PO operacijos atlikimo
+std::chrono::duration<double> diff = end - start; //parodo, kad laikas bus gražintas sekundėmis, nes naudojama double tipo kintamasis
+
+cout<<"Duomenu isvedimo laikas: "<< diff.count()<<" s \n"; //gražina skirtumą tarp pradžios ir pabaigos laiko sekundėmis
+
     return 0;
-}
+};
