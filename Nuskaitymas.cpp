@@ -1,0 +1,49 @@
+#include "include.h"
+#include "using.h"
+#include "RankinisIvedimas.h"
+#include "RandomPazymiai.h"
+#include "RandomStudentai.h"
+#include "Nuskaitymas.h"
+
+void Nuskaitymas(vector<Studentas>& grupe, int &rusiavimas){
+Studentas A;
+int m; 
+
+    cout<<"Kaip norite rusiuoti duomenis? Pasirinkite: \n";
+    cout<<"1 - rusiuoti pagal galutini rezultata \n";
+    cout<<"2 - rusiuoti pagal mediana \n";
+cin>>rusiavimas;
+std::ifstream fd("kursiokai1mln.txt");
+string temp;
+getline(fd, temp); //nuskaitoma antraste
+
+while(getline(fd, temp)) { //skaitomos visos kitos eilutės, kol jų yra
+    std::stringstream ss(temp); //eilutė paverčiama į srauto objektą, kad būtų galima lengviau išskirti duomenis
+ss>>A.vardas>>A.pavarde;
+vector<int> pazymiai; //laikinai saugomi pazymiai
+    int pazymys;
+    int sum = 0;
+
+    while(ss >> pazymys) {
+pazymiai.push_back(pazymys); //pažymys pridedamas į laikinojo vektoriaus masyvą, kol yra skaitomų pažymių
+}
+    A.egzaminas=pazymiai.back(); //paima paskutinį pažymį kaip egzamino pažymį
+    pazymiai.pop_back(); //pašalina paskutinį pažymį iš vektoriaus, nes jis jau yra priskirtas egzaminui
+    A.paz=pazymiai; //likusius pažymius priskiria namų darbų pažymiams
+for(int paz:A.paz) { 
+sum+=paz;
+}
+
+sort(A.paz.begin(), A.paz.end()); //surūšiuoja pažymius nuo mažiausio iki didžiausio
+    int kiekis=A.paz.size();
+if(kiekis % 2 == 0)
+    A.mediana = (A.paz[kiekis/2 - 1] + A.paz[kiekis/2]) / 2.0;
+else
+    A.mediana = A.paz[kiekis/2];
+
+    A.rezultatas=(sum*1.0/A.paz.size())*0.4 + A.egzaminas*0.6;
+    A.paz.clear(); //išvalomi pažymiai, kad būtų galima įvesti kitam studentui
+    grupe.push_back(A); //studentas įdedamas į grupę
+}
+fd.close(); 
+}
