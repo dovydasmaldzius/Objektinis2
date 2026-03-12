@@ -11,15 +11,20 @@ while(testistud=='t' || testistud=='T') {
 
 while(true) {
     cout<<"Iveskite varda ir pavarde: \n";
+try {
 cin>>A.vardas>>A.pavarde;
 bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
 if(hasDigit) {
-    cout << "Prasome ivesti varda ir pavarde dar karta \n";
+    throw std::runtime_error("Prasome ivesti tik raides!");
     continue; }
     break;
 }
-
-int n;
+catch(const std::exception& e) {
+    cout << e.what() << endl;
+cin.clear();
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+}
         
 char testipaz = 't';
 int temp; //laikinas pažymys
@@ -31,16 +36,26 @@ while(testipaz=='t' || testipaz=='T') {
 
 while(true) {
     cout<<"iveskite pazymi: \n";
-cin>>temp;
-if(cin.fail() || temp < 1 || temp > 10) {
-    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! \n";
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else {
-A.paz.push_back(temp); //pažymys pridedamas į studento pažymių vektorių
-sum+=temp; //pažymys pridedamas prie sumos
-break; } //baigiasi ciklas, jei įvestis teisinga
+
+try {
+cin >> temp;
+if(cin.fail()) {
+    throw std::runtime_error("Prasome ivesti tik skaicius!");
 }
+if(temp < 1 || temp > 10) {
+    throw std::out_of_range("Prasome ivesti skaiciu nuo 1 iki 10!");
+}
+A.paz.push_back(temp);
+sum += temp;
+break;
+}
+catch(const std::exception& e) {
+    cout << e.what() << endl;
+cin.clear();
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+}
+
     cout<<"Spauskite t, jei norite ivesti dar viena pazymi "<<endl;
     cout<<"Jei baigete pazymiu ivedima, spauskite bet koki (ne t) simboli"<<endl;
 cin>>testipaz;
@@ -48,12 +63,21 @@ cin>>testipaz;
 
 while(true) {
     cout<<"iveskite egzamino pazymi: \n";
+    try {
 cin>>A.egzaminas;
-if(cin.fail() || A.egzaminas < 1 || A.egzaminas > 10) {
-    cout<<"Prasome ivesti tik skaicius nuo 1 iki 10! \n";
+if(cin.fail()) {
+    throw std::runtime_error("Prasome ivesti tik skaicius!");
+}
+if(A.egzaminas < 1 || A.egzaminas > 10) {
+    throw std::out_of_range("Prasome ivesti skaiciu nuo 1 iki 10!");
+}
+break;
+}
+catch(const std::exception& e) {
+    cout << e.what() << endl;
 cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else break; 
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
 }
 
 A.paz.push_back(A.egzaminas); //laikinai įdedame egzamino pažymį į pažymių vektoriu, tam, kad galėtume teisingai apskaičiuoti medianą
@@ -67,7 +91,7 @@ else if(kiekis % 2 == 0) A.mediana = (A.paz[kiekis/2 - 1] + A.paz[kiekis/2]) / 2
 else A.mediana = A.paz[kiekis/2]; //jei pažymių skaičius yra nelyginis - medana yra vidurinis skaičius
 A.paz.pop_back(); //pašalinamas egzamino pažymys iš pažymių vektoraus, nes jo reikėjo tik medianos skaičiavimui
 
-A.rezultatas=sum*1.0/(n*1.0)*0.4+A.egzaminas*0.6;
+A.rezultatas=sum*1.0/(A.paz.size()*1.0)*0.4+A.egzaminas*0.6;
 grupe.push_back(A);
 A.paz.clear(); //išvalomi pažymiai, kad juos būtų galima įvesti kitam studentui
     cout<<"Spauskite t, jei norite ivesti kita studenta "<<endl;
