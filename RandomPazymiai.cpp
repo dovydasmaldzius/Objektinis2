@@ -7,16 +7,24 @@ Studentas A;
 
 char testistud='t';
 while(testistud=='t' || testistud=='T') {
-    int sum=0;
+int sum=0;
 while(true) {
-    cout<<"Iveskite varda ir pavarde \n";
+    cout<<"Iveskite varda ir pavarde: \n";
+try {
 cin>>A.vardas>>A.pavarde;
 bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
 if(hasDigit) {
-    cout << "Prasome ivesti varda ir pavarde dar karta \n";
+    throw std::runtime_error("Prasome ivesti tik raides!");
     continue; }
     break;
 }
+catch(const std::exception& e) {
+    cout << e.what() << endl;
+cin.clear();
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+}
+
 char testipaz='t';
 int temp;
 
