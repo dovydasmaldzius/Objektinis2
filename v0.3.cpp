@@ -29,14 +29,23 @@ while(true) {
     cout<<"2 - studentu vardus ir pavardes ivesti ranka, pazymius generuoti atsitiktinai"<<endl;
     cout<<"3 - studentu vardus, pavardes ir pazymius generuoti atsitiktinai"<<endl;
     cout<<"4 - duomenis nuskaityti is failo"<<endl;
+try {
 cin>>pasirinkimas;
-if(cin.fail() || pasirinkimas < 1 || pasirinkimas > 4){
-    cout<<"Prasome ivesti tik skaicius 1, 2, 3 arba 4!"<<endl;
+if(cin.fail()) {
+    throw std::runtime_error("Prasome ivesti tik skaicius nuo 1 iki 4!");
+}
+if(pasirinkimas < 1 || pasirinkimas > 4) {
+    throw std::out_of_range("Prasome ivesti tik skaicius nuo 1 iki 4!");
+}
+break;
+}
+catch(const std::exception& e) {
+    cout << e.what() << endl;
 cin.clear();
 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-else break;
 }
+
     if(pasirinkimas==1) RankinisIvedimas(grupe);
     else if(pasirinkimas==2) RandomPazymiai(grupe);
     else if(pasirinkimas==3) RandomStudentai(grupe);
