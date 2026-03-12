@@ -1,21 +1,13 @@
 #include "include.h"
 #include "using.h"
-#include "RankinisIvedimas.h"
-#include "RandomPazymiai.h"
+#include "Funkcijos.h"
 
-void RandomPazymiai(vector<Studentas>& grupe){
+void RandomPazymiai(vector<Studentas>& grupe) {
 Studentas A;
-int m;
-    while(true) {
-    cout << "kiek yra studentu? \n";
-cin>>m;
-if(cin.fail() || m < 0) { 
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else break; }
 
-for(int ii=0; ii<m; ii++){
+char testistud='t';
+while(testistud=='t' || testistud=='T') {
+    int sum=0;
 while(true) {
     cout<<"Iveskite varda ir pavarde \n";
 cin>>A.vardas>>A.pavarde;
@@ -25,28 +17,24 @@ if(hasDigit) {
     continue; }
     break;
 }
-int n;
-while(true) {
-    cout<<"iveskite pazymiu skaiciu: \n";
-cin>>n;
-if(cin.fail() || n < 0) {
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else break; }
-        
-int sum=0;
+char testipaz='t';
+int temp;
 
-    cout<<"Atsiktinai sugeneruoti "<<ii+1<<" - ojo studento pazymiai: \n";
-for(int i=0;i<n;i++) {
-int temp = (rand() % 10) + 1;
+cout<<"Random namu darbu pazymiai:\n";
+
+while(testipaz=='t' || testipaz=='T') {
+temp = (rand() % 10) + 1;
+cout<<"Random pazymys: "<<temp<<endl;
+
 A.paz.push_back(temp);
 sum+=temp;
-    cout<<temp<<" ";
-    cout<<endl; }
+    cout<<"Spauskite t, jei norite ivesti kita pazymi "<<endl;
+    cout<<"Jei baigete pazymiu ivedima, spauskite bet koki (ne t) simboli"<<endl;
+cin>>testipaz;
+}
         
 A.egzaminas = (rand() % 10) + 1;
-    cout<<"Atsitiktinai sugeneruotas "<<ii+1<<" - ojo studento egzamino pazymys: "<<A.egzaminas<<"\n";
+cout<<"Sugeneruotas egzamino pazymys: "<<A.egzaminas<<endl;
 
 A.paz.push_back(A.egzaminas);
         
@@ -59,7 +47,11 @@ else if(kiekis % 2 == 0) A.mediana = (A.paz[kiekis/2 - 1] + A.paz[kiekis/2]) / 2
 else A.mediana = A.paz[kiekis/2];
 A.paz.pop_back();
         
-A.rezultatas=sum*1.0/(n*1.0)*0.4+A.egzaminas*0.6;
+A.rezultatas = (sum * 1.0 / A.paz.size()) * 0.4 + A.egzaminas * 0.6;
 grupe.push_back(A);
-A.paz.clear(); }
+A.paz.clear(); 
+    cout<<"Spauskite t, jei norite ivesti kita studenta "<<endl;
+    cout<<"Jei baigete studentu ivedima, spauskite bet koki (ne t) simboli"<<endl;
+cin>>testistud;
+}
 }
