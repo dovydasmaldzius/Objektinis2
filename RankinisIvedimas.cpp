@@ -1,21 +1,14 @@
-#include "RankinisIvedimas.h"
+#include "Funkcijos.h"
 #include "include.h"
 #include "using.h"
 
 void RankinisIvedimas(vector<Studentas>& grupe){
 
 Studentas A;
-int m;
-    while(true) {
-    cout << "kiek yra studentu? \n";
-cin>>m;
-if(cin.fail() || m < 0) { 
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else break; }
 
-for(int ii=0; ii<m; ii++) {
+char testistud='t';
+while(testistud=='t' || testistud=='T') {
+
 while(true) {
     cout<<"Iveskite varda ir pavarde: \n";
 cin>>A.vardas>>A.pavarde;
@@ -27,19 +20,15 @@ if(hasDigit) {
 }
 
 int n;
-while(true) { //ciklas, kuris veikia iki tol, kol vartotojas įves klaidingą reikšmę
-    cout<<"iveskite pazymiu skaiciu: \n";
-cin>>n;
-if(cin.fail() || n < 0) {
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
-cin.clear(); //klaida pašalinama
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else break; } //baigiamas ciklas, jei įvestis teisinga
         
+char testipaz = 't';
 int temp; //laikinas pažymys
 int sum=0;
 
-for(int i=0;i<n;i++) {
+cout<<"Iveskite visus pazymius\n";
+
+while(testipaz=='t' || testipaz=='T') {
+
 while(true) {
     cout<<"iveskite pazymi: \n";
 cin>>temp;
@@ -52,6 +41,9 @@ A.paz.push_back(temp); //pažymys pridedamas į studento pažymių vektorių
 sum+=temp; //pažymys pridedamas prie sumos
 break; } //baigiasi ciklas, jei įvestis teisinga
 }
+    cout<<"Spauskite t, jei norite ivesti dar viena pazymi "<<endl;
+    cout<<"Jei baigete pazymiu ivedima, spauskite bet koki (ne t) simboli"<<endl;
+cin>>testipaz;
 }
 
 while(true) {
@@ -77,5 +69,9 @@ A.paz.pop_back(); //pašalinamas egzamino pažymys iš pažymių vektoraus, nes 
 
 A.rezultatas=sum*1.0/(n*1.0)*0.4+A.egzaminas*0.6;
 grupe.push_back(A);
-A.paz.clear(); }//išvalomi pažymiai, kad juos būtų galima įvesti kitam studentui
+A.paz.clear(); //išvalomi pažymiai, kad juos būtų galima įvesti kitam studentui
+    cout<<"Spauskite t, jei norite ivesti kita studenta "<<endl;
+    cout<<"Jei baigete studentu ivedima, spauskite bet koki (ne t) simboli"<<endl;
+cin>>testistud;
+}
 }
