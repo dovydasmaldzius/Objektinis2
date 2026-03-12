@@ -1,41 +1,37 @@
 #include "include.h"
 #include "using.h"
-#include "RankinisIvedimas.h"
-#include "RandomPazymiai.h"
-#include "RandomStudentai.h"
+#include "Funkcijos.h"
 
 void RandomStudentai(vector<Studentas>& grupe){
 Studentas A;
-int m;
-    while(true) {
-    cout << "kiek yra studentu? \n";
-cin>>m;
-if(cin.fail() || m < 0) { 
-    cout<<"Prasome ivesti tik naturaliuosius skaicius! \n";
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
-    else break; }
 
 vector<string> firstNames={"Jonas","Petras","Ona","Lina","Mantas","Egle","Darius","Ruta","Tomas","Ieva"};
 vector<string> lastNames={"Petraitis","Kazlauskas","Jankauskas","Stankevicius","Vilkas","Daugela","Miskinis","Jankauskiene","Zalys","Baranauskas"};
-for(int ii=0; ii<m; ii++) {
+
+char testi='t';
+int ii=1;
+
+while(testi=='t' || testi=='T') {
 A.vardas = firstNames[rand() % firstNames.size()];
 A.pavarde = lastNames[rand() % lastNames.size()];
 
-    int n=(rand() % 10)+1;
-    int sum=0;
+int n = rand()%10 + 1;
+int sum = 0;
 
-    cout<<"Atsiktinai sugeneruoti "<<ii+1<<" - ojo studento pazymiai: \n";
-for(int i=0; i<n; i++) {
-    int temp = (rand() % 10)+1;
+cout<<"Sugeneruotas "<<ii<<" studentas: "<<A.vardas<<" "<<A.pavarde<<"\n";
+cout<<"Random namu darbu pazymiai:\n";
+
+for(int i=0;i<n;i++) {
+int temp = rand()%10 + 1;
+
 A.paz.push_back(temp);
-    sum += temp;
-    
+sum += temp;
     cout<<temp<<" ";
-    cout<<"\n";}
+}
+cout<<endl;
 
 A.egzaminas = (rand() % 10) + 1;
-    cout<<"Atsitiktinai sugeneruotas "<<ii+1<<" - ojo studento egzamino pazymys: "<<A.egzaminas<<"\n";
+cout<<"Random egzamino pazymys: "<<A.egzaminas<<endl;
 
 A.paz.push_back(A.egzaminas);
 
@@ -51,5 +47,11 @@ A.paz.pop_back();
 
 A.rezultatas = sum*1.0/(n*1.0)*0.4 + A.egzaminas*0.6;
 grupe.push_back(A);
-A.paz.clear(); }
+A.paz.clear(); 
+cout<<"Spauskite t, jei norite sugeneruoti kita studenta "<<endl;
+cout<<"Jei baigete studentu generavima, spauskite bet koki (ne t) simboli"<<endl;
+cin>>testi;
+
+ii++;
+}
 }
