@@ -1,14 +1,11 @@
 #include "include.h"
-#include "using.h"
-#include "RankinisIvedimas.h"
-#include "RandomPazymiai.h"
-#include "RandomStudentai.h"
-#include "Nuskaitymas.h"
-#include "Isvedimas.h"
+#include "Funkcijos.h"
+#include "struktura.h"
 
-void Isvedimas(vector<Studentas>& grupe, int pasirinkimas, int rusiavimas){
+void Isvedimas(vector<Studentas>& grupe, int pasirinkimas, int rusiavimas) {
+    
 Studentas A;
-int m;
+
 if(pasirinkimas==4) {
     if(rusiavimas==1) {
     sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
