@@ -1,8 +1,9 @@
-#include "include.h"
-#include "using.h"
+#include "struktura.h"
 #include "Funkcijos.h"
+#include "include.h"
 
 void RandomPazymiai(vector<Studentas>& grupe) {
+
 Studentas A;
 
 char testistud='t';
@@ -10,7 +11,7 @@ while(testistud=='t' || testistud=='T') {
 int sum=0;
 while(true) {
     cout<<"Iveskite varda ir pavarde: \n";
-try {
+try { //programos vieta, kurioje gali įvykti klaida
 cin>>A.vardas>>A.pavarde;
 bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
 if(hasDigit) {
@@ -18,10 +19,10 @@ if(hasDigit) {
     continue; }
     break;
 }
-catch(const std::exception& e) {
-    cout << e.what() << endl;
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
+catch(const std::exception& e) { //gaudoma bet kokia išimtis, kuri gali įvykti įvedant duomenis
+    cout << e.what() << endl; //išvedamas klaidos pranešimas
+cin.clear(); //klaida išvaloma, kad būtų galima vėl įvesti duomenis
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įvesties duomenys, kad būtų galima vėl įvesti duomenis
 }
 }
 
