@@ -1,5 +1,5 @@
-#ifndef INCLUDE_H
-#define INCLUDE_H
+#ifndef INCLUDE_H //apsauga nuo kelių įtraukimų
+#define INCLUDE_H //apsauga nuo kelių įtraukimų
 
 #include <iostream>
 #include <string>
@@ -14,4 +14,21 @@
 #include <chrono>
 #include <sstream>
 
-#endif
+using std::string;
+using std::vector;
+using std::cout;
+using std::endl;
+using std::cin;
+using std::left;
+using std::right;
+using std::setw;
+using std::fixed;
+using std::setprecision;
+using std::numeric_limits;
+using std::streamsize;
+using std::max;
+using std::ifstream;
+using std::getline;
+using std::ofstream;
+
+#endif //apsauga nuo kelių įtraukimų
