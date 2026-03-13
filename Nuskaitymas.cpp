@@ -7,8 +7,9 @@ void Nuskaitymas(vector<Studentas>& grupe, int &rusiavimas) {
 Studentas A;
 
     cout<<"Kaip norite rusiuoti duomenis? Pasirinkite: \n";
-    cout<<"1 - rusiuoti pagal galutini rezultata \n";
-    cout<<"2 - rusiuoti pagal mediana \n";
+    cout<<"1 - rusiuoti pagal varda \n";
+    cout<<"2 - rusiuoti pagal pavarde \n";
+    cout<<"3 - rusiuoti pagal galutini rezultata \n";
 cin>>rusiavimas;
 std::ifstream fd("kursiokai100k.txt");
 string temp;
