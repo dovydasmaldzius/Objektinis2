@@ -1,8 +1,9 @@
-#include "include.h"
-#include "using.h"
+#include "struktura.h"
 #include "Funkcijos.h"
+#include "include.h"
 
-void RandomStudentai(vector<Studentas>& grupe){
+void RandomStudentai(vector<Studentas>& grupe) {
+
 Studentas A;
 
 vector<string> firstNames={"Jonas","Petras","Ona","Lina","Mantas","Egle","Darius","Ruta","Tomas","Ieva"};
