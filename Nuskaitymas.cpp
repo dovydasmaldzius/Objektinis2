@@ -1,19 +1,16 @@
+#include "struktura.h"
+#include "Funkcijos.h"
 #include "include.h"
-#include "using.h"
-#include "RankinisIvedimas.h"
-#include "RandomPazymiai.h"
-#include "RandomStudentai.h"
-#include "Nuskaitymas.h"
 
-void Nuskaitymas(vector<Studentas>& grupe, int &rusiavimas){
+void Nuskaitymas(vector<Studentas>& grupe, int &rusiavimas) {
+    
 Studentas A;
-int m; 
 
     cout<<"Kaip norite rusiuoti duomenis? Pasirinkite: \n";
     cout<<"1 - rusiuoti pagal galutini rezultata \n";
     cout<<"2 - rusiuoti pagal mediana \n";
 cin>>rusiavimas;
-std::ifstream fd("kursiokai1mln.txt");
+std::ifstream fd("kursiokai100k.txt");
 string temp;
 getline(fd, temp); //nuskaitoma antraste
 
