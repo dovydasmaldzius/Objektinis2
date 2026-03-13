@@ -9,16 +9,21 @@ Studentas A;
 if(pasirinkimas==4) {
     if(rusiavimas==1) {
     sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.rezultatas>b.rezultatas;
+return a.vardas<b.vardas;
 });
 }
 else if(rusiavimas==2) {
     sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.mediana>b.mediana;
+return a.pavarde<b.pavarde;
+});
+}
+else if(rusiavimas==3) {
+    sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
+return a.rezultatas<b.rezultatas;
 });
 }
 else {
-    cout<<"Prasome pasirinkti tik 1 arba 2!\n"; }
+    cout<<"Prasome pasirinkti tik 1, 2 arba 3!\n"; }
 }
 
 int isvedimas;
@@ -38,61 +43,17 @@ else break;
 auto start = std::chrono::high_resolution_clock::now(); //fiksuojamas tikslus laikas prieš operacijos atlikimą, kad būtų galima apskaičiuoti, kiek laiko užtrunka duomenų išvedimas
 
 if(isvedimas==1) {
-    cout << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
-if(pasirinkimas==4) {
-if(rusiavimas==1)
-    cout << setw(20) << "Galutinis";
-else
-    cout << setw(20) << "Mediana"; 
-}
-else {
-    cout << setw(20) << "Galutinis" << setw(20) << "Mediana";
-}
-    cout<<"\n";
-
-for(const auto &A:grupe) { //naudojama esamo objekto grupe tik adresas, kad būtų galima išvengti nereikalingo kopijavimo
-    cout << left << setw(20) << A.vardas << setw(20) << A.pavarde;
-if(pasirinkimas==4) {
-if(rusiavimas==1)
-    cout << setw(20) << fixed << setprecision(2) << A.rezultatas;
-else
-    cout << setw(20) << A.mediana;
-}
-else {
-    cout << setw(20) << fixed << setprecision(2) << A.rezultatas << setw(20) << A.mediana;
-}
-    cout<<"\n";
+    cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<"\n";
+for(const auto &A : grupe) {
+    cout<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<< A.rezultatas<<"\n";
 }
 }
 
 else if(isvedimas==2){
 ofstream fr("rezultatai.txt");
-fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde";
-
-if(pasirinkimas==4) {
-if(rusiavimas==1)
-    fr<<setw(20)<<"Galutinis";
-else
-    fr<<setw(20)<<"Mediana";
-}
-else {
-    fr<<setw(20)<<"Galutinis"<<setw(20)<<"Mediana";
-}
-    fr<<"\n";
-
-for(const auto &A:grupe) { //naudojama esamo objekto grupe tik adresas, kad būtų galima išvengti nereikalingo kopijavimo
-    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde;
-
-if(pasirinkimas==4) {
-if(rusiavimas==1)
-    fr<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas;
-else
-    fr<<setw(20)<<A.mediana;
-}
-else {
-    fr<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<setw(20)<<A.mediana;
-}
-    fr<<"\n";
+    fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<"\n";
+for(const auto &A : grupe) {
+    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
 }
 
 fr.close();
