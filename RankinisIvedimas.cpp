@@ -1,6 +1,6 @@
 #include "Funkcijos.h"
+#include "struktura.h"
 #include "include.h"
-#include "using.h"
 
 void RankinisIvedimas(vector<Studentas>& grupe){
 
@@ -11,7 +11,7 @@ while(testistud=='t' || testistud=='T') {
 
 while(true) {
     cout<<"Iveskite varda ir pavarde: \n";
-try {
+try { //programos vieta, kurioje gali įvykti klaida
 cin>>A.vardas>>A.pavarde;
 bool hasDigit = std::any_of(A.vardas.begin(), A.vardas.end(), [](unsigned char c){ return std::isdigit(c); }) || std::any_of(A.pavarde.begin(), A.pavarde.end(), [](unsigned char c){ return std::isdigit(c); });
 if(hasDigit) {
@@ -19,25 +19,22 @@ if(hasDigit) {
     continue; }
     break;
 }
-catch(const std::exception& e) {
-    cout << e.what() << endl;
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
+catch(const std::exception& e) { //gaudoma bet kokia išimtis, kuri gali įvykti įvedant duomenis
+    cout << e.what() << endl; //išvedamas klaidos pranešimas
+cin.clear(); //klaida išvaloma, kad būtų galima vėl įvesti duomenis
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įvesties duomenys, kad būtų galima vėl įvesti duomenis
 }
 }
         
 char testipaz = 't';
 int temp; //laikinas pažymys
 int sum=0;
-
 cout<<"Iveskite visus pazymius\n";
 
 while(testipaz=='t' || testipaz=='T') {
-
 while(true) {
     cout<<"iveskite pazymi: \n";
-
-try {
+try { //programos vieta, kurioje gali įvykti klaida
 cin >> temp;
 if(cin.fail()) {
     throw std::runtime_error("Prasome ivesti tik skaicius!");
@@ -49,10 +46,10 @@ A.paz.push_back(temp);
 sum += temp;
 break;
 }
-catch(const std::exception& e) {
-    cout << e.what() << endl;
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
+catch(const std::exception& e) { //gaudoma bet kokia išimtis, kuri gali įvykti įvedant duomenis
+    cout << e.what() << endl; //išvedamas klaidos pranešimas
+cin.clear(); //klaida išvaloma, kad būtų galima vėl įvesti duomenis
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įvesties duomenys, kad būtų galima vėl įvesti duomenis
 }
 }
 
@@ -63,7 +60,7 @@ cin>>testipaz;
 
 while(true) {
     cout<<"iveskite egzamino pazymi: \n";
-    try {
+    try { //programos vieta, kurioje gali įvykti klaida
 cin>>A.egzaminas;
 if(cin.fail()) {
     throw std::runtime_error("Prasome ivesti tik skaicius!");
@@ -73,10 +70,10 @@ if(A.egzaminas < 1 || A.egzaminas > 10) {
 }
 break;
 }
-catch(const std::exception& e) {
-    cout << e.what() << endl;
-cin.clear();
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
+catch(const std::exception& e) { //gaudoma bet kokia išimtis, kuri gali įvykti įvedant duomenis
+    cout << e.what() << endl; //išvedamas klaidos pranešimas
+cin.clear(); //klaida išvaloma, kad būtų galima vėl įvesti duomenis
+cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įvesties duomenys, kad būtų galima vėl įvesti duomenis
 }
 }
 
