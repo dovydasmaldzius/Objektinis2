@@ -17,12 +17,13 @@ while(true) {
     cout<<"3 - studentu vardus, pavardes ir pazymius generuoti atsitiktinai"<<endl;
     cout<<"4 - duomenis nuskaityti is failo"<<endl;
     cout<<"5 - generuoti failus"<<endl;
+    cout<<"6 - atlikti kodo greicio analize"<<endl;
 try { //programos vieta, kurioje gali įvykti klaida
 cin>>pasirinkimas;
 if(cin.fail()) {
     throw std::runtime_error("Prasome ivesti tik skaicius nuo 1 iki 5!"); //tikrina, ar įvestas skaičius, jei ne - išmetamas klaidos pranešimas
 }
-if(pasirinkimas < 1 || pasirinkimas > 5) {
+if(pasirinkimas < 1 || pasirinkimas > 6) {
     throw std::out_of_range("Prasome ivesti tik skaicius nuo 1 iki 5!"); //tikrina, ar įvestas skaičius yra nuo 1 iki 5, jei ne - išmetamas klaidos pranešimas
 }
 break;
@@ -38,11 +39,10 @@ cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įv
     else if(pasirinkimas==3) RandomStudentai(grupe);
     else if(pasirinkimas==4) Nuskaitymas(grupe, rusiavimas);
     else if(pasirinkimas==5) {
-
-vector<int> dydziai={1000,10000,100000};
+vector<int> dydziai={1000,10000,100000,1000000,10000000};
 
 for(int n : dydziai){
-string failas="studentai" + to_string(n)+".txt";
+string failas = "studentai" + to_string(n) + ".txt";
 
 auto start = std::chrono::high_resolution_clock::now();
 GeneruotiFaila(failas,n);
@@ -51,6 +51,9 @@ auto end = std::chrono::high_resolution_clock::now();
 std::chrono::duration<double> diff = end - start;
 
 cout<<failas<<" sukurtas per "<<diff.count()<<" s\n"; }
+}
+else if(pasirinkimas==6){ LaikoMatavimas();
+return 0;
 }
 Isvedimas(grupe, pasirinkimas, rusiavimas);
 return 0;
