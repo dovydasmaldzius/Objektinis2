@@ -15,6 +15,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <random>
+#include <list>
+#include <deque>
 
 using std::string;
 using std::vector;
