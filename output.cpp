@@ -2,48 +2,53 @@
 #include "funkcions.h"
 #include "includes.h"
 
-void IsvestiIFaila(const vector<Studentas>& grupe, const string& failas){
-ofstream fr(failas);
-
-fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis\n";
-
-for(const auto& A : grupe){
-    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
+// Funkcija išvesti duomenis į failą
+template<typename Container>
+void IsvestiIFaila(const Container& grupe, const std::string& failas) {
+    ofstream fr(failas);
+    fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis\n";
+    for(const auto& A : grupe){
+        fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
+    }
+    fr.close();
 }
-fr.close();
-}
-void Isvedimas(vector<Studentas>& grupe, int pasirinkimas, int rusiavimas) {
+template<typename Container>
+void Isvedimas(Container& grupe, int pasirinkimas, int rusiavimas) {
+Container vargsiukai;
+Container kietiakai;
 
-    vector<Studentas>vargsiukai;
-    vector<Studentas>kietiakai;
+auto pagalVarda = [](const Studentas &a, const Studentas &b) {
+return a.vardas < b.vardas; };
 
-Studentas A;
+auto pagalPavarde = [](const Studentas &a, const Studentas &b){
+return a.pavarde < b.pavarde; };
 
-if(pasirinkimas==4) {
-    if(rusiavimas==1) {
-    sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.vardas<b.vardas;
-});
-}
-else if(rusiavimas==2) {
-    sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.pavarde<b.pavarde;
-});
-}
-else if(rusiavimas==3) {
-    sort(grupe.begin(), grupe.end(), [](const Studentas &a, const Studentas &b) {
-return a.rezultatas<b.rezultatas;
-});
+auto pagalRez = [](const Studentas &a, const Studentas &b){
+return a.rezultatas < b.rezultatas; };
+
+if(pasirinkimas == 4) {
+if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+    if(rusiavimas==1) grupe.sort(pagalVarda);
+    else if(rusiavimas==2) grupe.sort(pagalPavarde);
+    else if(rusiavimas==3) grupe.sort(pagalRez);
+    else cout<<"Prasome pasirinkti tik 1, 2 arba 3!\n"; }
+else {
+    if(rusiavimas==1)
+std::sort(grupe.begin(), grupe.end(), pagalVarda);
+    else if(rusiavimas==2)
+std::sort(grupe.begin(), grupe.end(), pagalPavarde);
+    else if(rusiavimas==3)
+std::sort(grupe.begin(), grupe.end(), pagalRez);
+    else cout<<"Prasome pasirinkti tik 1, 2 arba 3!\n"; }
 }
 else {
     cout<<"Prasome pasirinkti tik 1, 2 arba 3!\n"; }
-}
-for(const auto& stud : grupe){
-    if(stud.rezultatas < 5.0)
-vargsiukai.push_back(stud);
-    else
-kietiakai.push_back(stud);
-}
+
+for(const auto& stud : grupe) {
+if(stud.rezultatas < 5.0)
+    vargsiukai.push_back(stud);
+else
+    kietiakai.push_back(stud); }
 
 IsvestiIFaila(vargsiukai,"vargsiukai.txt");
 IsvestiIFaila(kietiakai,"kietiakai.txt");
