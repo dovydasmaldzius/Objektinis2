@@ -2,7 +2,8 @@
 #include "structure.h"
 #include "includeS.h"
 
-void RankinisIvedimas(vector<Studentas>& grupe){
+template<typename Container>
+void RankinisIvedimas(Container& grupe){
 
 Studentas A;
 
