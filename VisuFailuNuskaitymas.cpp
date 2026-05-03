@@ -1,7 +1,10 @@
 #include "structure.h"
 #include "funkcions.h"
 #include "includes.h"
-void NuskaitymasIsFailo(const string& failas, vector<Studentas>& grupe) {
+
+template<typename Container>
+void NuskaitymasIsFailo(const std::string& failas, Container& grupe) {
+    
 ifstream fd(failas);
 if(!fd) {
 cout<<"FAILAS NERASTAS: "<<failas<<endl;
