@@ -2,7 +2,8 @@
 #include "funkcions.h"
 #include "includes.h"
 
-void RandomStudentai(vector<Studentas>& grupe) {
+template<typename Container>
+void RandomStudentai(Container& grupe) {
 
 Studentas A;
 
@@ -52,7 +53,6 @@ A.paz.clear();
 cout<<"Spauskite t, jei norite sugeneruoti kita studenta "<<endl;
 cout<<"Jei baigete studentu generavima, spauskite bet koki (ne t) simboli"<<endl;
 cin>>testi;
-
 ii++;
 }
 }
