@@ -2,7 +2,8 @@
 #include "funkcions.h"
 #include "includes.h"
 
-void RandomPazymiai(vector<Studentas>& grupe) {
+template<typename Container>
+void RandomPazymiai(Container& grupe) {
 
 Studentas A;
 
