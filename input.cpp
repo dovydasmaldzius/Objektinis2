@@ -2,7 +2,8 @@
 #include "funkcions.h"
 #include "includes.h"
 
-void Nuskaitymas(vector<Studentas>& grupe, int &rusiavimas) {
+template<typename Container>
+void Nuskaitymas(Container& grupe, int &rusiavimas) {
     
 Studentas A;
 
