@@ -17,6 +17,7 @@
 #include <random>
 #include <list>
 #include <deque>
+#include <type_traits>
 
 using std::string;
 using std::vector;
