@@ -15,7 +15,7 @@ string temp;
 getline(fd, temp);
 Studentas A;
 
-while(getline(fd, temp)){
+while(getline(fd, temp)) {
 
 std::stringstream ss(temp);
 

@@ -2,16 +2,16 @@
 #include "funkcions.h"
 #include "includes.h"
 
-// Funkcija išvesti duomenis į failą
 template<typename Container>
 void IsvestiIFaila(const Container& grupe, const std::string& failas) {
     ofstream fr(failas);
     fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis\n";
-    for(const auto& A : grupe){
-        fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
-    }
+    for(const auto& A : grupe) {
+    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
+}
     fr.close();
 }
+
 template<typename Container>
 void Isvedimas(Container& grupe, int pasirinkimas, int rusiavimas) {
 Container vargsiukai;
@@ -27,7 +27,7 @@ auto pagalRez = [](const Studentas &a, const Studentas &b){
 return a.rezultatas < b.rezultatas; };
 
 if(pasirinkimas == 4) {
-if constexpr (std::is_same<Container, std::list<Studentas>>::value) {
+if constexpr (std::is_same<Container, std::list<Studentas>>::value) { //tikrina, ar konteineris yra list, jei taip - naudojamas list sort metodas
     if(rusiavimas==1) grupe.sort(pagalVarda);
     else if(rusiavimas==2) grupe.sort(pagalPavarde);
     else if(rusiavimas==3) grupe.sort(pagalRez);
