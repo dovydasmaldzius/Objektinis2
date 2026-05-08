@@ -1,16 +1,18 @@
 #include "structure.h"
 #include "includes.h"
 #include "funkcions.h"
+#include "Strategijos.h"
 
-using StudContainer = std::vector<Studentas>;
+using StudContainer = std::vector<Studentas>; //naudojama vektoriaus konteinerio tipas, kad būtų galima lengvai keisti konteinerį
+//using StudContainer = std::list<Studentas>;
+//using StudContainer = std::deque<Studentas>;
 
     int main() {
     std::ios::sync_with_stdio(false); //duomenų srauto sinchronizavimas su C funkcijomis išjungiamas, kad būtų pasiektas didesnis efektyvumas
 srand(time(NULL)); //naudojamas, kad funkcija rand() kiekvieną kartą generuotų ne tas pačias reikšmes
     int pasirinkimas;
     int rusiavimas=0;
-Studentas A; //vienas studentas, kurio duomenys bus įvedami, o vėliau įdedami į grupę
-    StudContainer grupe;
+    StudContainer grupe; //studentų grupė, kurioje saugomi visi studentai
 
 while(true) {
     cout<<"Kaip norite ivesti duomenis?"<<endl;
@@ -19,14 +21,14 @@ while(true) {
     cout<<"3 - studentu vardus, pavardes ir pazymius generuoti atsitiktinai"<<endl;
     cout<<"4 - duomenis nuskaityti is failo"<<endl;
     cout<<"5 - generuoti failus"<<endl;
-    cout<<"6 - atlikti kodo greicio analize"<<endl;
+    cout<<"6 - atlikti kodo greicio analize su skirtingais konteineriais"<<endl;
 try { //programos vieta, kurioje gali įvykti klaida
 cin>>pasirinkimas;
 if(cin.fail()) {
-    throw std::runtime_error("Prasome ivesti tik skaicius nuo 1 iki 5!"); //tikrina, ar įvestas skaičius, jei ne - išmetamas klaidos pranešimas
+    throw std::runtime_error("Prasome ivesti tik skaicius nuo 1 iki 6!"); //tikrina, ar įvestas skaičius, jei ne - išmetamas klaidos pranešimas
 }
 if(pasirinkimas < 1 || pasirinkimas > 6) {
-    throw std::out_of_range("Prasome ivesti tik skaicius nuo 1 iki 5!"); //tikrina, ar įvestas skaičius yra nuo 1 iki 5, jei ne - išmetamas klaidos pranešimas
+    throw std::out_of_range("Prasome ivesti tik skaicius nuo 1 iki 6!"); //tikrina, ar įvestas skaičius yra nuo 1 iki 6, jei ne - išmetamas klaidos pranešimas
 }
 break;
 }
@@ -43,8 +45,8 @@ cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įv
     else if(pasirinkimas==5) {
 vector<int> dydziai={1000,10000,100000,1000000,10000000};
 
-for(int n : dydziai){
-string failas = "studentai" + to_string(n) + ".txt";
+for(int n : dydziai) {
+string failas = "studentai" + to_string(n) + ".txt"; //kuriami failu pavadinimai
 
 auto start = std::chrono::high_resolution_clock::now();
 GeneruotiFaila(failas,n);
@@ -57,6 +59,5 @@ cout<<failas<<" sukurtas per "<<diff.count()<<" s\n"; }
 else if(pasirinkimas==6) { 
 LaikoMatavimas();
 }
-Isvedimas(grupe, pasirinkimas, rusiavimas);
-return 0;
+Isvedimas(grupe, pasirinkimas, rusiavimas); //duomenų išvedimas
 };

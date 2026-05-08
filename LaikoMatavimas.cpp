@@ -2,15 +2,21 @@
 #include "funkcions.h"
 #include "includes.h"
 
-void LaikoMatavimas() { vector<int> dydziai = {1000,10000,100000,1000000,10000000};
+void LaikoMatavimas()
+{
+vector<string> failai = {
+    "studentai1000.txt",
+    "studentai10000.txt",
+    "studentai100000.txt",
+    "studentai1000000.txt",
+    "studentai10000000.txt"
+};
 
-for(int n : dydziai){
-string failas = "studentai" + to_string(n) + ".txt";
-
-    cout<<"\n Vector:      \n";
-TestuotiGreiti<vector<Studentas>>(failas);
-    cout<<"   List:        \n";
-TestuotiGreiti<std::list<Studentas>>(failas);
-    cout<<"   Deque:       \n";
-TestuotiGreiti<std::deque<Studentas>>(failas); }
+for(const auto& f : failai) { //atliekami testai su visais sugeneruotais failais su vectoriaus, listo ir deko konteineriais
+    cout<<"VECTOR\n";
+TestuotiGreiti<vector<Studentas>>(f);
+    cout<<"LIST\n";
+TestuotiGreiti<list<Studentas>>(f);
+    cout<<"DEQUE\n";
+TestuotiGreiti<deque<Studentas>>(f); }
 }

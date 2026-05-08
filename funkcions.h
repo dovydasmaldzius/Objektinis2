@@ -3,6 +3,7 @@
 
 #include "structure.h"
 #include "includes.h"
+#include "Strategijos.h"
 
 template<typename Container>
 void RankinisIvedimas(Container& grupe);

@@ -1,7 +1,7 @@
 #ifndef STRUCTURE_H //apsauga nuo kelių įtraukimų
 #define STRUCTURE_H //apsauga nuo kelių įtraukimų
 
-#include "includeS.h"
+#include "includes.h"
 
 struct Studentas {
 std::string vardas="A";

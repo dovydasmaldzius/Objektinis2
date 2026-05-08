@@ -7,16 +7,16 @@ template <typename Container>
 void TestuotiGreiti(const string& failas) {
 Container studentai;
 
-auto ns = std::chrono::high_resolution_clock::now();
+auto pr = std::chrono::high_resolution_clock::now(); //fuksuojamas laikas prieš studentų nuskaitymą
 NuskaitymasIsFailo(failas, studentai);
-auto ne = std::chrono::high_resolution_clock::now();
+auto pa = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas po studentų nuskaitymo
 
 cout<<failas<<"\n";
-cout<<"Nuskaitymas: "<< duration<double>(ne-ns).count()<<" s\n";
+cout<<"Nuskaitymas: "<< duration<double>(pa-pr).count()<<" s\n";
 
 
-Container rusiuoti = studentai;
-auto rs = std::chrono::high_resolution_clock::now();
+Container rusiuoti = studentai; //kopija, kuri bus rikiuojama, kad originalus studentų sąrašas liktų nepakitęs
+auto prad = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas prieš rikiavimą
 
 if constexpr (std::is_same_v<Container, std::list<Studentas>>) { //tikrina, ar konteineris yra list, jei taip - naudojamas list sort metodas
     rusiuoti.sort([](const Studentas& a, const Studentas& b) {
@@ -27,39 +27,39 @@ std::sort(rusiuoti.begin(), rusiuoti.end(), [](const Studentas& a, const Student
 return a.rezultatas < b.rezultatas; });
 }
 
-auto re = std::chrono::high_resolution_clock::now();
-cout<<"Rusiavimas: "<<duration<double>(re-rs).count()<<" s\n";
+auto pab = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas po rikiavimo
 
+cout<<"Rusiavimas: "<<duration<double>(pab-prad).count()<<" s\n";
 
 { //Strategija nr. 1
-Container kopija = rusiuoti;
+Container kopija = rusiuoti; //kopija, kuri bus naudojama strategijoms, kad originalus rikiuotas sąrašas liktų nepakitęs
 Container vargsiukai, kietiakai;
 
-auto s = std::chrono::high_resolution_clock::now();
+auto b = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas prieš 1-osstrategijos vykdymą
 Strategija1(kopija, vargsiukai, kietiakai);
-auto e = std::chrono::high_resolution_clock::now();
+auto e = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas po 1-os strategijos vykdymo
 
-cout<<"Strategija 1: "<<duration<double>(e-s).count()<<" s\n";
+cout<<"Strategija 1: "<<duration<double>(e-b).count()<<" s\n";
 }
 
 { //Strategija nr. 2
-Container kopija = rusiuoti;
+Container kopija = rusiuoti; //kopija, kuri bus naudojama strategijoms, kad originalus rikiuotas sąrašas liktų nepakitęs
 Container vargsiukai;
 
-auto s = std::chrono::high_resolution_clock::now();
+auto b = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas prieš 2-os strategijos vykdymą
 Strategija2(kopija, vargsiukai);
-auto e = std::chrono::high_resolution_clock::now();
+auto e = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas po 2-os strategijos vykdymo
 
-cout<<"Strategija 2: "<<duration<double>(e-s).count()<<" s\n";
+cout<<"Strategija 2: "<<duration<double>(e-b).count()<<" s\n";
 }
 
 { //Strategija nr. 3
-Container kopija = rusiuoti;
+Container kopija = rusiuoti; //kopija, kuri bus naudojama strategijoms, kad originalus rikiuotas sąrašas liktų nepakitęs    
 Container vargsiukai, kietiakai;
 
-auto s = std::chrono::high_resolution_clock::now();
+auto b = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas prieš 3-os strategijos vykdymą
 Strategija3(kopija, vargsiukai, kietiakai);
-auto e = std::chrono::high_resolution_clock::now();
+auto e = std::chrono::high_resolution_clock::now(); //fiksuojamas laikas po 3-os strategijos vykdymo
 
-cout<<"Strategija 3: "<<duration<double>(e-s).count()<<" s\n\n"; }
+cout<<"Strategija 3: "<<duration<double>(e-b).count()<<" s\n\n"; }
 }

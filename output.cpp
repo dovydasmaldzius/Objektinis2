@@ -26,7 +26,7 @@ return a.pavarde < b.pavarde; };
 auto pagalRez = [](const Studentas &a, const Studentas &b){
 return a.rezultatas < b.rezultatas; };
 
-if(pasirinkimas == 4) {
+if(pasirinkimas == 4) { //contexpr - compile time if, kuris leidžia pasirinkti rikiavimo metodą pagal konteinerio tipą
 if constexpr (std::is_same<Container, std::list<Studentas>>::value) { //tikrina, ar konteineris yra list, jei taip - naudojamas list sort metodas
     if(rusiavimas==1) grupe.sort(pagalVarda);
     else if(rusiavimas==2) grupe.sort(pagalPavarde);
