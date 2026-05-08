@@ -1,6 +1,7 @@
 #include "structure.h"
 #include "funkcions.h"
 #include "includes.h"
+
 void NuskaitymasIsFailo(const string& failas, vector<Studentas>& grupe) {
 ifstream fd(failas);
 if(!fd) {
@@ -14,7 +15,7 @@ Studentas A;
 
 while(getline(fd, temp)){
 
-std::stringstream ss(temp);
+std::stringstream ss(temp); //stringstream - teksto eilute padalina i atskirus zodzius ir skaicius
 
 ss>>A.vardas>>A.pavarde;
 vector<int> pazymiai;

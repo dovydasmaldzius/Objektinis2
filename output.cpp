@@ -2,7 +2,7 @@
 #include "funkcions.h"
 #include "includes.h"
 
-void IsvestiIFaila(const vector<Studentas>& grupe, const string& failas){
+void IsvestiIFaila(const vector<Studentas>& grupe, const string& failas) {
 ofstream fr(failas);
 
 fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis\n";

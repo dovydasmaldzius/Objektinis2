@@ -13,6 +13,8 @@
 #include <fstream>
 #include <chrono>
 #include <sstream>
+#include <stdexcept>
+#include <random>
 
 using std::string;
 using std::vector;
@@ -30,5 +32,11 @@ using std::max;
 using std::ifstream;
 using std::getline;
 using std::ofstream;
+using std::mt19937;
+using std::uniform_int_distribution;
+using std::random_device;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration;
+using std::to_string;
 
 #endif //apsauga nuo kelių įtraukimų

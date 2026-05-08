@@ -52,7 +52,8 @@ std::chrono::duration<double> diff = end - start;
 
 cout<<failas<<" sukurtas per "<<diff.count()<<" s\n"; }
 }
-else if(pasirinkimas==6){ LaikoMatavimas();
+else if(pasirinkimas==6) { 
+LaikoMatavimas();
 return 0;
 }
 Isvedimas(grupe, pasirinkimas, rusiavimas);
