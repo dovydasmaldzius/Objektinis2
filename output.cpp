@@ -1,4 +1,4 @@
-#include "structure.h"
+#include "Studentas.h"
 #include "funkcions.h"
 #include "includes.h"
 
@@ -7,7 +7,7 @@ void IsvestiIFaila(const Container& grupe, const std::string& failas) {
     ofstream fr(failas);
     fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis\n";
     for(const auto& A : grupe) {
-    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
+    fr<<left<<setw(20)<<A.vardas()<<setw(20)<<A.pavarde()<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas()<<"\n";
 }
     fr.close();
 }
@@ -18,13 +18,13 @@ Container vargsiukai;
 Container kietiakai;
 
 auto pagalVarda = [](const Studentas &a, const Studentas &b) {
-return a.vardas < b.vardas; };
+return a.vardas() < b.vardas(); };
 
 auto pagalPavarde = [](const Studentas &a, const Studentas &b){
-return a.pavarde < b.pavarde; };
+return a.pavarde() < b.pavarde(); };
 
 auto pagalRez = [](const Studentas &a, const Studentas &b){
-return a.rezultatas < b.rezultatas; };
+return a.rezultatas() < b.rezultatas(); };
 
 if(pasirinkimas == 4) { //contexpr - compile time if, kuris leidžia pasirinkti rikiavimo metodą pagal konteinerio tipą
 if constexpr (std::is_same<Container, std::list<Studentas>>::value) { //tikrina, ar konteineris yra list, jei taip - naudojamas list sort metodas
@@ -45,7 +45,7 @@ else {
     cout<<"Prasome pasirinkti tik 1, 2 arba 3!\n"; }
 
 for(const auto& stud : grupe) {
-if(stud.rezultatas < 5.0)
+if(stud.rezultatas() < 5.0)
     vargsiukai.push_back(stud);
 else
     kietiakai.push_back(stud); }
@@ -72,7 +72,7 @@ auto start = std::chrono::high_resolution_clock::now(); //fiksuojamas tikslus la
 if(isvedimas==1) {
     cout<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<"\n";
 for(const auto &A : grupe) {
-    cout<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<< A.rezultatas<<"\n";
+    cout<<left<<setw(20)<<A.vardas()<<setw(20)<<A.pavarde()<<setw(20)<<fixed<<setprecision(2)<< A.rezultatas()<<"\n";
 }
 }
 
@@ -80,7 +80,7 @@ else if(isvedimas==2){
 ofstream fr("rezultatai.txt");
     fr<<left<<setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(20)<<"Galutinis"<<"\n";
 for(const auto &A : grupe) {
-    fr<<left<<setw(20)<<A.vardas<<setw(20)<<A.pavarde<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas<<"\n";
+    fr<<left<<setw(20)<<A.vardas()<<setw(20)<<A.pavarde()<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas()<<"\n";
 }
 
 fr.close();
