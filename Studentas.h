@@ -15,23 +15,24 @@ double mediana_;
 
 public:
 // Konstruktorius ir destruktorius
-Studentas();
-Studentas(std::istream& is);
-~Studentas() = default;
+Studentas(); //numatytasis konstruktorius, kuris inicijuoja tuščius duomenis
+Studentas(std::istream& is); //konstruktorius, kuris inicijuoja duomenis iš įvesties srauto
+~Studentas() = default; //destruktorius, kuris naudoja numatytąją reikšmę
 
 // Rule of Five
-Studentas(const Studentas& other);
-Studentas& operator=(const Studentas& other);
-Studentas(Studentas&& other) noexcept;
-Studentas& operator=(Studentas&& other) noexcept;
+Studentas(const Studentas& other); // (Copy Constructor) - kuriamas naujas objektas kaip kopija
+Studentas& operator=(const Studentas& other); // (Copy Assignment Operator) - priskiriamas vieno objekto reikšmės kitam objektui
+Studentas(Studentas&& other) noexcept; // (Move Constructor) - kuriamas naujas objektas, kuris perima kitam objektui priskirtas reikšmes, o kitas objektas paliekamas tuščias
+Studentas& operator=(Studentas&& other) noexcept; // (Move Assignment Operator) - priskiriamas vieno objekto reikšmės kitam objektui, o kitas objektas paliekamas tuščias
+// noexcept naudojamas, kad būtų nurodyta, jog šios funkcijos negali išmesti išimčių
 
 // Stream operators
-friend std::istream& operator>>(std::istream& is, Studentas& s);
+friend std::istream& operator>>(std::istream& is, Studentas& s); //friend funkcija leidžia pasiekti klasės privačius narius, kad būtų galima įvesti duomenis į objektą
 friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
 
 // Skaitymo metodai
-std::istream& readStudent(std::istream& is);
-void skaiciuotiRezultata();
+std::istream& readStudent(std::istream& is); //metodas, kuris skaito studento duomenis iš įvesties srauto
+void skaiciuotiRezultata(); //metodas, kuris skaičiuoja studento galutinį rezultatą pagal pažymius ir egzaminą
 
 // Getteriai
 string& vardas() { return vardas_; }
