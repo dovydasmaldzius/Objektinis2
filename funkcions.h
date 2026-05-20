@@ -1,7 +1,7 @@
 #ifndef FUNKCIONS_H //apsauga nuo kelių įtraukimų
 #define FUNKCIONS_H //apsauga nuo kelių įtraukimų
 
-#include "structure.h"
+#include "Studentas.h"
 #include "includes.h"
 #include "Strategijos.h"
 
@@ -32,6 +32,7 @@ void TestuotiGreiti(const string& failas);
 void GeneruotiFaila(const std::string& failas, int kiekis);
 void LaikoMatavimas();
 
+#include "Studentas.cpp"
 #include "output.cpp"
 #include "input.cpp"
 #include "InputByHand.cpp"
@@ -40,6 +41,6 @@ void LaikoMatavimas();
 #include "VisuFailuNuskaitymas.cpp"
 #include "Generatorius.cpp"
 #include "LaikoMatavimas.cpp"
-#include "testasv1.0.cpp"
+#include "testasv1.1.cpp"
 
 #endif //apsauga nuo kelių įtraukimų

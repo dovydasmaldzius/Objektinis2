@@ -1,4 +1,4 @@
-#include "structure.h"
+#include "Studentas.h"
 #include "includes.h"
 #include "funkcions.h"
 #include "Strategijos.h"
