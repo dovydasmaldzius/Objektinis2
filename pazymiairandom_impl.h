@@ -1,5 +1,5 @@
-#ifndef PAZYMIAIRANDOM_IMPL_H
-#define PAZYMIAIRANDOM_IMPL_H
+#ifndef PAZYMIAIRANDOM_IMPL_H //apsauga nuo kelių įtraukimų
+#define PAZYMIAIRANDOM_IMPL_H //apsauga nuo kelių įtraukimų
 
 #include "Studentas.h"
 #include "includes.h"
@@ -67,4 +67,4 @@ cin>>testistud;
 }
 }
 
-#endif // PAZYMIAIRANDOM_IMPL_H
+#endif // apsauga nuo kelių įtraukimų

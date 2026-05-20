@@ -1,5 +1,5 @@
-#ifndef INPUTBYHAND_IMPL_H
-#define INPUTBYHAND_IMPL_H
+#ifndef INPUTBYHAND_IMPL_H //apsauga nuo kelių įtraukimų
+#define INPUTBYHAND_IMPL_H //apsauga nuo kelių įtraukimų
 
 #include "funkcions.h"
 #include "Studentas.h"
@@ -99,4 +99,4 @@ cin>>testistud;
 }
 }
 
-#endif // INPUTBYHAND_IMPL_H
+#endif //apsauga nuo kelių įtraukimų

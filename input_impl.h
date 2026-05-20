@@ -1,5 +1,5 @@
-#ifndef INPUT_IMPL_H
-#define INPUT_IMPL_H
+#ifndef INPUT_IMPL_H //apsauga nuo kelių įtraukimų
+#define INPUT_IMPL_H //apsauga nuo kelių įtraukimų
 
 #include "Studentas.h"
 #include "includes.h"
@@ -52,4 +52,4 @@ A.rezultatas() = 0;
 fd.close(); 
 }
 
-#endif // INPUT_IMPL_H
+#endif //apsauga nuo kelių įtraukimų

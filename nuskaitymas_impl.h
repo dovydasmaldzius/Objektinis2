@@ -1,5 +1,5 @@
-#ifndef NUSKAITYMAS_IMPL_H
-#define NUSKAITYMAS_IMPL_H
+#ifndef NUSKAITYMAS_IMPL_H //apsauga nuo kelių įtraukimų
+#define NUSKAITYMAS_IMPL_H //apsauga nuo kelių įtraukimų
 
 #include "Studentas.h"
 #include "includes.h"
@@ -53,4 +53,4 @@ A.setRezultatas(rez);
 fd.close();
 }
 
-#endif // NUSKAITYMAS_IMPL_H
+#endif // apsauga nuo kelių įtraukimų

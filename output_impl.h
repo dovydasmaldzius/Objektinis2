@@ -1,5 +1,5 @@
-#ifndef OUTPUT_IMPL_H
-#define OUTPUT_IMPL_H
+#ifndef OUTPUT_IMPL_H //apsauga nuo kelių įtraukimų
+#define OUTPUT_IMPL_H //apsauga nuo kelių įtraukimų
 
 #include "Studentas.h"
 #include "includes.h"
@@ -91,4 +91,4 @@ std::chrono::duration<double> diff = end - start;
     cout<<"Duomenu isvedimo laikas: "<< diff.count()<<" s \n";
 }
 
-#endif // OUTPUT_IMPL_H
+#endif // apsauga nuo kelių įtraukimų
