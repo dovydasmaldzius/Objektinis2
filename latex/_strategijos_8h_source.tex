@@ -1,0 +1,43 @@
+\doxysection{Strategijos.\+h}
+\hypertarget{_strategijos_8h_source}{}\label{_strategijos_8h_source}\doxymbox{\hyperlink{_strategijos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STRATEGIJOS\_H\ }\textcolor{comment}{//apsauga\ nuo\ kelių\ įtraukimų}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STRATEGIJOS\_H\ }\textcolor{comment}{//apsauga\ nuo\ kelių\ įtraukimų}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{funkcions_8h}{funkcions.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_strategijos_8h_ae7ff5be7c3a7a4f205b7ff5440f6313e}{Strategija1}}(Container\&\ studentai,\ Container\&\ vargsiukai,\ Container\&\ kietiakai)\ \{\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ s\ :\ studentai)\ \{}
+\DoxyCodeLine{00011\ \textcolor{keywordflow}{if}(s.rezultatas()\ <\ 5)}
+\DoxyCodeLine{00012\ \ \ \ \ vargsiukai.push\_back(s);}
+\DoxyCodeLine{00013\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00014\ \ \ \ \ kietiakai.push\_back(s);\ \}}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_strategijos_8h_a4d5c2cd323d8889c38de94fff9a43cdb}{Strategija2}}(Container\&\ studentai,Container\&\ vargsiukai)\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{auto}\ it\ =\ std::remove\_if(studentai.begin(),\ studentai.end(),\ [\&](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\&\ s)\{}
+\DoxyCodeLine{00020\ \ \ \ \ if(s.rezultatas()\ <\ 5)\ \{}
+\DoxyCodeLine{00021\ vargsiukai.push\_back(s);}
+\DoxyCodeLine{00022\ return\ true;}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ studentai.erase(it,\ studentai.end());}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{_strategijos_8h_af6299654a1383d73b051393ae986df05}{Strategija3}}(Container\&\ studentai,\ Container\&\ vargsiukai,\ Container\&\ kietiakai)\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{auto}\ it\ =\ std::partition\ (studentai.begin(),\ studentai.end(),\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\&\ s)\ \{\ \textcolor{comment}{//padalina\ studentus\ į\ dvi\ grupes}}
+\DoxyCodeLine{00032\ return\ s.rezultatas()\ <\ 5;\ \});\ \textcolor{comment}{//grupė\ su\ vargšiukais\ bus\ prieš\ grupę\ su\ kietiakais}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ vargsiukai.insert(vargsiukai.end(),\ studentai.begin(),\ it);\ \textcolor{comment}{//vargsiukai\ konteineris\ užpildomas\ vargšiukais}}
+\DoxyCodeLine{00035\ kietiakai.insert(kietiakai.end(),\ it,\ studentai.end());\ \textcolor{comment}{//kietiakai\ konteineris\ užpildomas\ kietiakais}}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//apsauga\ nuo\ kelių\ įtraukimų}}
+
+\end{DoxyCode}

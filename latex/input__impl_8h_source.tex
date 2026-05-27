@@ -1,0 +1,60 @@
+\doxysection{input\+\_\+impl.\+h}
+\hypertarget{input__impl_8h_source}{}\label{input__impl_8h_source}\doxymbox{\hyperlink{input__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INPUT\_IMPL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INPUT\_IMPL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{input__impl_8h_a457b3ee82adeb056f2e54b406138c8d4}{Nuskaitymas}}(Container\&\ grupe,\ \textcolor{keywordtype}{int}\ \&rusiavimas)\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ }
+\DoxyCodeLine{00010\ \ \ \ \ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ A;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Kaip\ norite\ rusiuoti\ duomenis?\ Pasirinkite:\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00013\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}1\ -\/\ rusiuoti\ pagal\ varda\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00014\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}2\ -\/\ rusiuoti\ pagal\ pavarde\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00015\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}3\ -\/\ rusiuoti\ pagal\ galutini\ rezultata\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00016\ \ \ \ \ cin>>rusiavimas;}
+\DoxyCodeLine{00017\ std::ifstream\ fd(\textcolor{stringliteral}{"{}kursiokai.txt"{}});}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{string}\ temp;}
+\DoxyCodeLine{00019\ getline(fd,\ temp);\ \textcolor{comment}{//nuskaitoma\ antraste}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keywordflow}{while}(getline(fd,\ temp))\ \{\ \textcolor{comment}{//skaitomos\ visos\ kitos\ eilutės,\ kol\ jų\ yra}}
+\DoxyCodeLine{00022\ \ \ \ \ std::stringstream\ ss(temp);\ \textcolor{comment}{//eilutė\ paverčiama\ į\ srauto\ objektą,\ kad\ būtų\ galima\ lengviau\ išskirti\ duomenis}}
+\DoxyCodeLine{00023\ ss>>A.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}()>>A.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}();\ \textcolor{comment}{//iš\ srauto\ objekto\ išskiriami\ vardas\ ir\ pavardė}}
+\DoxyCodeLine{00024\ vector<int>\ pazymiai;\ \textcolor{comment}{//laikinai\ saugomi\ pazymiai}}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{int}\ pazymys;}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordflow}{while}(ss\ >>\ pazymys)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ pazymiai.push\_back(pazymys);\ \textcolor{comment}{//pažymys\ pridedamas\ į\ laikinojo\ vektoriaus\ masyvą,\ kol\ yra\ skaitomų\ pažymių}}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()\ =\ pazymiai.back();\ \textcolor{comment}{//paima\ paskutinį\ pažymį\ kaip\ egzamino\ pažymį}}
+\DoxyCodeLine{00032\ pazymiai.pop\_back();\ \textcolor{comment}{//pašalina\ paskutinį\ pažymį\ iš\ vektoriaus,\ nes\ jis\ jau\ yra\ priskirtas\ egzaminui}}
+\DoxyCodeLine{00033\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()\ =\ pazymiai;\ \textcolor{comment}{//likusius\ pažymius\ priskiria\ namų\ darbų\ pažymiams}}
+\DoxyCodeLine{00034\ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ paz:A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}())\ \{\ }
+\DoxyCodeLine{00035\ sum+=paz;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ std::sort(A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().begin(),\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().end());\ \textcolor{comment}{//surūšiuoja\ pažymius\ nuo\ mažiausio\ iki\ didžiausio}}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{int}\ kiekis=A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().size();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}(kiekis\ \%\ 2\ ==\ 0)}
+\DoxyCodeLine{00041\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ (A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2\ -\/\ 1]\ +\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2])\ /\ 2.0;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00043\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2];}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prevent\ division\ by\ zero}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (!A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().empty())}
+\DoxyCodeLine{00046\ A.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}()=(sum*1.0/A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().size())*0.4\ +\ A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()*0.6;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00048\ A.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}()\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().clear();\ \textcolor{comment}{//išvalomi\ pažymiai,\ kad\ būtų\ galima\ įvesti\ kitam\ studentui}}
+\DoxyCodeLine{00050\ \ \ \ \ grupe.push\_back(A);\ \textcolor{comment}{//studentas\ įdedamas\ į\ grupę}}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ fd.close();\ }
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INPUT\_IMPL\_H}}
+
+\end{DoxyCode}

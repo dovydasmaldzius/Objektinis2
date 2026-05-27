@@ -1,0 +1,63 @@
+\doxysection{includes.\+h}
+\hypertarget{includes_8h_source}{}\label{includes_8h_source}\doxymbox{\hyperlink{includes_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INCLUDES\_H\ }\textcolor{comment}{//apsauga\ nuo\ kelių\ įtraukimų}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INCLUDES\_H\ }\textcolor{comment}{//apsauga\ nuo\ kelių\ įtraukimų}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cctype>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{using\ }std::string;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{using\ }std::vector;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ }std::list;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{using\ }std::deque;}
+\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }std::cout;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{using\ }std::endl;}
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ }std::cin;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{using\ }std::left;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{using\ }std::right;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{using\ }std::setw;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{using\ }std::fixed;}
+\DoxyCodeLine{00033\ \textcolor{keyword}{using\ }std::setprecision;}
+\DoxyCodeLine{00034\ \textcolor{keyword}{using\ }std::numeric\_limits;}
+\DoxyCodeLine{00035\ \textcolor{keyword}{using\ }std::streamsize;}
+\DoxyCodeLine{00036\ \textcolor{keyword}{using\ }std::max;}
+\DoxyCodeLine{00037\ \textcolor{keyword}{using\ }std::ifstream;}
+\DoxyCodeLine{00038\ \textcolor{keyword}{using\ }std::getline;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{using\ }std::ofstream;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }std::mt19937;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ }std::uniform\_int\_distribution;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{using\ }std::random\_device;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{using\ }std::chrono::high\_resolution\_clock;}
+\DoxyCodeLine{00044\ \textcolor{keyword}{using\ }std::chrono::duration;}
+\DoxyCodeLine{00045\ \textcolor{keyword}{using\ }std::to\_string;}
+\DoxyCodeLine{00046\ \textcolor{keyword}{using\ }std::find;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ ieško\ elementų\ konteineryje,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{using\ }std::find\_if;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ ieško\ elementų\ konteineryje\ su\ sąlyga,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{using\ }std::search;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ ieško\ elementų\ konteineryje,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{using\ }std::copy;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ kopijuoja\ elementus\ iš\ vieno\ konteinerio\ į\ kitą,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{using\ }std::remove;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ pašalina\ elementus\ iš\ konteinerio,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{using\ }std::remove\_if;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ pašalina\ elementus\ iš\ konteinerio\ su\ sąlyga,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{using\ }std::remove\_copy;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ pašalina\ kopijas\ iš\ konteinerio,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{using\ }std::remove\_copy\_if;\ \textcolor{comment}{//naudojama\ funkcijoms,\ kurios\ pašalina\ kopijas\ iš\ konteinerio\ su\ sąlyga,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{using\ }std::transform;\ \textcolor{comment}{//naudojama\ funkcijai,\ kuri\ konvertuoja\ string\ į\ int,\ naudojant\ lambda\ funkciją}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{using\ }std::partition;\ \textcolor{comment}{//greitesnis\ nei\ stable\_partition,\ bet\ nekeičia\ elementų\ tvarkos}}
+\DoxyCodeLine{00056\ \textcolor{keyword}{using\ }std::stable\_partition;\ \textcolor{comment}{//lėtesnis\ nei\ partition,\ bet\ nekeičia\ elementų\ tvarkos}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//apsauga\ nuo\ kelių\ įtraukimų}}
+
+\end{DoxyCode}

@@ -1,0 +1,61 @@
+\doxysection{nuskaitymas\+\_\+impl.\+h}
+\hypertarget{nuskaitymas__impl_8h_source}{}\label{nuskaitymas__impl_8h_source}\doxymbox{\hyperlink{nuskaitymas__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NUSKAITYMAS\_IMPL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NUSKAITYMAS\_IMPL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{nuskaitymas__impl_8h_a583aca0ceebe1a7d892232d42a32e281}{NuskaitymasIsFailo}}(\textcolor{keyword}{const}\ std::string\&\ failas,\ Container\&\ grupe)\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ ifstream\ fd(failas);}
+\DoxyCodeLine{00011\ \textcolor{keywordflow}{if}(!fd)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}FAILAS\ NERASTAS:\ "{}}<<failas<<endl;}
+\DoxyCodeLine{00013\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{string}\ temp;}
+\DoxyCodeLine{00016\ getline(fd,\ temp);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keywordflow}{while}(getline(fd,\ temp))\ \{}
+\DoxyCodeLine{00019\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ A;}
+\DoxyCodeLine{00020\ \ \ \ \ std::stringstream\ ss(temp);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{string}\ vardas,pavarde;}
+\DoxyCodeLine{00022\ ss>>vardas>>pavarde;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ A.\doxymbox{\hyperlink{class_zmogus_a1cfb82338adcdbeecccebb8c77b4aaf4}{setVardas}}(vardas);}
+\DoxyCodeLine{00025\ A.\doxymbox{\hyperlink{class_zmogus_a604c508fa587671a7d1df8f0522c63e9}{setPavarde}}(pavarde);}
+\DoxyCodeLine{00026\ vector<int>\ pazymiai;}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{int}\ pazymys;}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{while}(ss>>pazymys)}
+\DoxyCodeLine{00031\ pazymiai.push\_back(pazymys);}
+\DoxyCodeLine{00032\ \ \ \ \ A.\doxymbox{\hyperlink{class_studentas_a659d6bb3cfd109fe095a9a03eaea2667}{setEgzaminas}}(pazymiai.back());}
+\DoxyCodeLine{00033\ pazymiai.pop\_back();}
+\DoxyCodeLine{00034\ \ \ \ \ A.\doxymbox{\hyperlink{class_studentas_a84f97bdb0e497dd25b3c19f912812cfb}{setPaz}}(pazymiai);}
+\DoxyCodeLine{00035\ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ p\ :\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}())}
+\DoxyCodeLine{00036\ \ \ \ \ sum\ +=\ p;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ vector<int>\ tempPaz\ =\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}();}
+\DoxyCodeLine{00039\ std::sort(tempPaz.begin(),\ tempPaz.end());}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{int}\ kiekis\ =\ tempPaz.size();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{double}\ mediana;}
+\DoxyCodeLine{00042\ \textcolor{keywordflow}{if}(kiekis\ \%\ 2\ ==\ 0)}
+\DoxyCodeLine{00043\ \ \ \ \ mediana\ =\ (tempPaz[kiekis/2-\/1]\ +\ tempPaz[kiekis/2])\ /\ 2.0;}
+\DoxyCodeLine{00044\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00045\ \ \ \ \ mediana\ =\ tempPaz[kiekis/2];}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ A.\doxymbox{\hyperlink{class_studentas_a8cfb9782fd1c54b709c763f6f18b4921}{setMediana}}(mediana);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{double}\ rez\ =\ (sum\ *\ 1.0\ /\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().size())\ *\ 0.4\ +\ A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()\ *\ 0.6;}
+\DoxyCodeLine{00050\ A.\doxymbox{\hyperlink{class_studentas_a393971117ce21371071a7fd4f0bd1311}{setRezultatas}}(rez);}
+\DoxyCodeLine{00051\ \ \ \ \ grupe.push\_back(A);}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ fd.close();}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ NUSKAITYMAS\_IMPL\_H}}
+
+\end{DoxyCode}

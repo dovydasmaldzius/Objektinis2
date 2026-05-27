@@ -1,0 +1,99 @@
+\doxysection{output\+\_\+impl.\+h}
+\hypertarget{output__impl_8h_source}{}\label{output__impl_8h_source}\doxymbox{\hyperlink{output__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ OUTPUT\_IMPL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ OUTPUT\_IMPL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{output__impl_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(\textcolor{keyword}{const}\ Container\&\ grupe,\ \textcolor{keyword}{const}\ std::string\&\ failas)\ \{}
+\DoxyCodeLine{00009\ ofstream\ fr(failas);}
+\DoxyCodeLine{00010\ \ \ \ \ fr<<left<<setw(20)<<\textcolor{stringliteral}{"{}Vardas"{}}<<setw(20)<<\textcolor{stringliteral}{"{}Pavarde"{}}<<setw(20)<<\textcolor{stringliteral}{"{}Galutinis\(\backslash\)n"{}};}
+\DoxyCodeLine{00011\ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ A\ :\ grupe)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ fr<<left<<setw(20)<<A.vardas()<<setw(20)<<A.pavarde()<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas()<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ \ \ \ \ fr.close();}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{output__impl_8h_a2397ecb660da6bc5b7cd99c7803719e0}{Isvedimas}}(Container\&\ grupe,\ \textcolor{keywordtype}{int}\ pasirinkimas,\ \textcolor{keywordtype}{int}\ rusiavimas)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ Container\ vargsiukai;}
+\DoxyCodeLine{00020\ \ \ \ \ Container\ kietiakai;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{auto}\ pagalVarda\ =\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ \&a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ \&b)\ \{}
+\DoxyCodeLine{00023\ \textcolor{keywordflow}{return}\ a.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}()\ <\ b.vardas();\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{auto}\ pagalPavarde\ =\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ \&a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ \&b)\{}
+\DoxyCodeLine{00026\ \textcolor{keywordflow}{return}\ a.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}()\ <\ b.pavarde();\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{auto}\ pagalRez\ =\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ \&a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ \&b)\{}
+\DoxyCodeLine{00029\ \textcolor{keywordflow}{return}\ a.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}()\ <\ b.rezultatas();\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordflow}{if}(pasirinkimas\ ==\ 4)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same<Container,\ std::list<Studentas>>::value)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rusiavimas==1)\ grupe.sort(pagalVarda);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(rusiavimas==2)\ grupe.sort(pagalPavarde);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(rusiavimas==3)\ grupe.sort(pagalRez);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{else}\ cout<<\textcolor{stringliteral}{"{}Prasome\ pasirinkti\ tik\ 1,\ 2\ arba\ 3!\(\backslash\)n"{}};\ \}}
+\DoxyCodeLine{00037\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}(rusiavimas==1)}
+\DoxyCodeLine{00039\ std::sort(grupe.begin(),\ grupe.end(),\ pagalVarda);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(rusiavimas==2)}
+\DoxyCodeLine{00041\ std::sort(grupe.begin(),\ grupe.end(),\ pagalPavarde);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(rusiavimas==3)}
+\DoxyCodeLine{00043\ std::sort(grupe.begin(),\ grupe.end(),\ pagalRez);}
+\DoxyCodeLine{00044\ \textcolor{keywordflow}{else}\ cout<<\textcolor{stringliteral}{"{}Prasome\ pasirinkti\ tik\ 1,\ 2\ arba\ 3!\(\backslash\)n"{}};\ \}}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keywordflow}{else}\ \{\ cout<<\textcolor{stringliteral}{"{}Prasome\ pasirinkti\ tik\ 1,\ 2\ arba\ 3!\(\backslash\)n"{}};\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ stud\ :\ grupe)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}(stud.rezultatas()\ <\ 5.0)}
+\DoxyCodeLine{00051\ vargsiukai.push\_back(stud);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00053\ kietiakai.push\_back(stud);\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \doxymbox{\hyperlink{output__impl_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(vargsiukai,\textcolor{stringliteral}{"{}vargsiukai.txt"{}});}
+\DoxyCodeLine{00056\ \doxymbox{\hyperlink{output__impl_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(kietiakai,\textcolor{stringliteral}{"{}kietiakai.txt"{}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{int}\ isvedimas;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Kur\ norite\ matyti\ rezultatus?\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00061\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}1\ -\/\ ekrane\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00062\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}2\ -\/\ faile\ rezultatai.txt\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00063\ cin>>isvedimas;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{if}(cin.fail()\ ||\ (isvedimas!=1\ \&\&\ isvedimas!=2))\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Prasome\ pasirinkti\ tik\ skaiciu\ 1\ arba\ 2!\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00066\ cin.clear();}
+\DoxyCodeLine{00067\ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{auto}\ start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00073\ \textcolor{keywordflow}{if}(isvedimas==1)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ cout<<left<<setw(20)<<\textcolor{stringliteral}{"{}Vardas"{}}<<setw(20)<<\textcolor{stringliteral}{"{}Pavarde"{}}<<setw(20)<<\textcolor{stringliteral}{"{}Galutinis"{}}<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00075\ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&A\ :\ grupe)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ cout<<left<<setw(20)<<A.vardas()<<setw(20)<<A.pavarde()<<setw(20)<<fixed<<setprecision(2)<<\ A.rezultatas()<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(isvedimas==2)\{}
+\DoxyCodeLine{00081\ ofstream\ fr(\textcolor{stringliteral}{"{}rezultatai.txt"{}});}
+\DoxyCodeLine{00082\ \ \ \ \ fr<<left<<setw(20)<<\textcolor{stringliteral}{"{}Vardas"{}}<<setw(20)<<\textcolor{stringliteral}{"{}Pavarde"{}}<<setw(20)<<\textcolor{stringliteral}{"{}Galutinis"{}}<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00083\ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&A\ :\ grupe)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ fr<<left<<setw(20)<<A.vardas()<<setw(20)<<A.pavarde()<<setw(20)<<fixed<<setprecision(2)<<A.rezultatas()<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ \ \ \ \ fr.close();}
+\DoxyCodeLine{00087\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Prasome\ patikrinti\ faila\ rezultatai.txt\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{auto}\ end\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00090\ std::chrono::duration<double>\ diff\ =\ end\ -\/\ start;}
+\DoxyCodeLine{00091\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Duomenu\ isvedimo\ laikas:\ "{}}<<\ diff.count()<<\textcolor{stringliteral}{"{}\ s\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OUTPUT\_IMPL\_H}}
+
+\end{DoxyCode}
