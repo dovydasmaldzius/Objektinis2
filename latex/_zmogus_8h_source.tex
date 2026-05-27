@@ -1,0 +1,36 @@
+\doxysection{Zmogus.\+h}
+\hypertarget{_zmogus_8h_source}{}\label{_zmogus_8h_source}\doxymbox{\hyperlink{_zmogus_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ZMOGUS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ZMOGUS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_zmogus_a905fef3b8ad421a6d023c7ebc295f48e}{Zmogus}}\ \{\ \textcolor{comment}{//\ abstrakti\ bazinė\ klasė,\ objektų\ joje\ negalime\ kurti}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{protected}:\ \textcolor{comment}{//\ Žmogaus\ duomenys\ (vardas,\ pavardė)turi\ būti\ pasiekiami\ tik\ Studentas\ klasei,\ todėl\ protected}}
+\DoxyCodeLine{00009\ std::string\ \doxymbox{\hyperlink{class_zmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}};}
+\DoxyCodeLine{00010\ std::string\ \doxymbox{\hyperlink{class_zmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:\ \textcolor{comment}{//Konstruktoriai\ ir\ destruktorius}}
+\DoxyCodeLine{00013\ \doxymbox{\hyperlink{class_zmogus_a905fef3b8ad421a6d023c7ebc295f48e}{Zmogus}}()\ =\ \textcolor{keywordflow}{default};\ \textcolor{comment}{//\ numatytasis\ konstruktorius,\ kuris\ leidžia\ sukurti\ tuščią\ žmogų,\ jei\ reikia}}
+\DoxyCodeLine{00014\ \doxymbox{\hyperlink{class_zmogus_a74a810be1857d01eb55552c02ed1ac36}{Zmogus}}(\textcolor{keyword}{const}\ std::string\&\ v,\ \textcolor{keyword}{const}\ std::string\&\ p)\ :\ \doxymbox{\hyperlink{class_zmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}(v),\ \doxymbox{\hyperlink{class_zmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}(p)\ \{\}\ \textcolor{comment}{//\ konstruktorius,\ kuris\ leidžia\ sukurti\ žmogų\ su\ vardu\ ir\ pavarde}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_zmogus_a6183937c7da8254430a6c99cfa89fe69}{\string~Zmogus}}()\ =\ \textcolor{keywordflow}{default};\ \textcolor{comment}{//objekto\ naukinimas\ per\ virtualų\ destruktorių}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Getteriai}}
+\DoxyCodeLine{00019\ std::string\&\ \doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_zmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}};\ \}\ \textcolor{comment}{//\ leidžia\ keisti\ vardą}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{const}\ std::string\&\ \doxymbox{\hyperlink{class_zmogus_ac21ab5fa524d6d0a75ca4cbfa2df113c}{vardas}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_zmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}};\ \}\ \textcolor{comment}{//\ leidžia\ gauti\ vardą,\ bet\ neleidžia\ jo\ keisti\ (const)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ std::string\&\ \doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}()\ \{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_zmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}};\ \}\ \textcolor{comment}{//\ leidžia\ keisti\ pavardę}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{const}\ std::string\&\ \doxymbox{\hyperlink{class_zmogus_a67cbc20c9554324502d140eb05370be8}{pavarde}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_zmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}};\ \}\ \textcolor{comment}{//\ leidžia\ gauti\ pavardę,\ bet\ neleidžia\ jos\ keisti\ (const)}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zmogus_a1cfb82338adcdbeecccebb8c77b4aaf4}{setVardas}}(\textcolor{keyword}{const}\ std::string\&\ v)\{\ \doxymbox{\hyperlink{class_zmogus_a80e72cd553492344884a264a72ce33d2}{vardas\_}}\ =\ v;\ \}\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zmogus_a604c508fa587671a7d1df8f0522c63e9}{setPavarde}}(\textcolor{keyword}{const}\ std::string\&\ p)\{\ \doxymbox{\hyperlink{class_zmogus_a85cd6103a5f887059263d15413a3f081}{pavarde\_}}\ =\ p;\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_zmogus_a4f4e5d369e28d2533eb585d817b1962c}{skaiciuotiRezultata}}()\ =\ 0;\ \textcolor{comment}{//Klasė\ Žmogus\ tampa\ abstrakti,\ pačioje\ joje\ negalima\ kurti\ objekto}}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

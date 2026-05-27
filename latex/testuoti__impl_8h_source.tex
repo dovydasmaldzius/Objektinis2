@@ -1,0 +1,75 @@
+\doxysection{testuoti\+\_\+impl.\+h}
+\hypertarget{testuoti__impl_8h_source}{}\label{testuoti__impl_8h_source}\doxymbox{\hyperlink{testuoti__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TESTUOTI\_IMPL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TESTUOTI\_IMPL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{funkcions_8h}{funkcions.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_strategijos_8h}{Strategijos.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{testuoti__impl_8h_ae1f064829a75c943a6716fac259a3a85}{TestuotiGreiti}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ failas)\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ Container\ studentai;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{auto}\ pr\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00014\ \ \ \ \ \doxymbox{\hyperlink{funkcions_8h_a583aca0ceebe1a7d892232d42a32e281}{NuskaitymasIsFailo}}(failas,\ studentai);}
+\DoxyCodeLine{00015\ \textcolor{keyword}{auto}\ pa\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ cout<<failas<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00018\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Nuskaitymas:\ "{}}<<duration<double>(pa-\/pr).count()<<\textcolor{stringliteral}{"{}\ s\(\backslash\)n"{}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ Container\ rusiuoti\ =\ studentai;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{auto}\ prad\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00022\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same\_v<Container,\ list<Studentas>>)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ rusiuoti.sort([](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\&\ b)\ \{}
+\DoxyCodeLine{00024\ \textcolor{keywordflow}{return}\ a.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}()\ <\ b.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}();\ \});}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ sort(rusiuoti.begin(),\ rusiuoti.end(),\ [](\textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\&\ a,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\&\ b)\ \{}
+\DoxyCodeLine{00028\ return\ a.rezultatas()\ <\ b.rezultatas();\ \});}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{auto}\ pab\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00031\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Rusiavimas:\ "{}}<<duration<double>(pab-\/prad).count()<<\textcolor{stringliteral}{"{}\ s\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ 1\ Strategija}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ Container\ kopija\ =\ rusiuoti;}
+\DoxyCodeLine{00036\ \ \ \ \ Container\ vargsiukai,\ kietiakai;}
+\DoxyCodeLine{00037\ \textcolor{keyword}{auto}\ b\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{_strategijos_8h_ae7ff5be7c3a7a4f205b7ff5440f6313e}{Strategija1}}(kopija,\ vargsiukai,\ kietiakai);}
+\DoxyCodeLine{00039\ \textcolor{keyword}{auto}\ e\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00040\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Strategija\ 1:\ "{}}<<duration<double>(e-\/b).count()<<\textcolor{stringliteral}{"{}\ s\(\backslash\)n"{}};}
+\DoxyCodeLine{00041\ \doxymbox{\hyperlink{funkcions_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(vargsiukai,\ \textcolor{stringliteral}{"{}vargsiukai\_"{}}\ +\ failas);}
+\DoxyCodeLine{00042\ \doxymbox{\hyperlink{funkcions_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(kietiakai,\ \textcolor{stringliteral}{"{}kietiakai\_"{}}\ +\ failas);}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ 2\ Strategija}}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ Container\ kopija\ =\ rusiuoti;}
+\DoxyCodeLine{00048\ \ \ \ \ Container\ vargsiukai;}
+\DoxyCodeLine{00049\ \textcolor{keyword}{auto}\ b\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00050\ \ \ \ \ \doxymbox{\hyperlink{_strategijos_8h_a4d5c2cd323d8889c38de94fff9a43cdb}{Strategija2}}(kopija,\ vargsiukai);}
+\DoxyCodeLine{00051\ \textcolor{keyword}{auto}\ e\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00052\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Strategija\ 2:\ "{}}<<\ duration<double>(e-\/b).count()<<\textcolor{stringliteral}{"{}\ s\(\backslash\)n"{}};}
+\DoxyCodeLine{00053\ \doxymbox{\hyperlink{funkcions_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(vargsiukai,\ \textcolor{stringliteral}{"{}vargsiukai\_"{}}\ +\ failas);}
+\DoxyCodeLine{00054\ \doxymbox{\hyperlink{funkcions_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(kopija,\ \textcolor{stringliteral}{"{}kietiakai\_"{}}\ +\ failas);}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ 3\ Strategija}}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ Container\ kopija\ =\ rusiuoti;}
+\DoxyCodeLine{00060\ \ \ \ \ Container\ vargsiukai,\ kietiakai;}
+\DoxyCodeLine{00061\ \textcolor{keyword}{auto}\ b\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00062\ \ \ \ \ \doxymbox{\hyperlink{_strategijos_8h_af6299654a1383d73b051393ae986df05}{Strategija3}}(kopija,\ vargsiukai,\ kietiakai);}
+\DoxyCodeLine{00063\ \textcolor{keyword}{auto}\ e\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00064\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Strategija\ 3:\ "{}}<<duration<double>(e-\/b).count()<<\textcolor{stringliteral}{"{}\ s\(\backslash\)n\(\backslash\)n"{}};}
+\DoxyCodeLine{00065\ \doxymbox{\hyperlink{funkcions_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(vargsiukai,\ \textcolor{stringliteral}{"{}vargsiukai\_"{}}\ +\ failas);}
+\DoxyCodeLine{00066\ \doxymbox{\hyperlink{funkcions_8h_a1d0c2f11a9c4c91c60191cc4541f9c85}{IsvestiIFaila}}(kietiakai,\ \textcolor{stringliteral}{"{}kietiakai\_"{}}\ +\ failas);}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TESTUOTI\_IMPL\_H}}
+
+\end{DoxyCode}

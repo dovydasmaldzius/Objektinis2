@@ -1,0 +1,65 @@
+\doxysection{studentairandom\+\_\+impl.\+h}
+\hypertarget{studentairandom__impl_8h_source}{}\label{studentairandom__impl_8h_source}\doxymbox{\hyperlink{studentairandom__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STUDENTAIRANDOM\_IMPL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STUDENTAIRANDOM\_IMPL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{studentairandom__impl_8h_acec2c512a0510b13627a02c34d32decf}{RandomStudentai}}(Container\&\ grupe)\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ A;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ vector<string>\ firstNames=\{\textcolor{stringliteral}{"{}Jonas"{}},\textcolor{stringliteral}{"{}Petras"{}},\textcolor{stringliteral}{"{}Ona"{}},\textcolor{stringliteral}{"{}Lina"{}},\textcolor{stringliteral}{"{}Mantas"{}},\textcolor{stringliteral}{"{}Egle"{}},\textcolor{stringliteral}{"{}Darius"{}},\textcolor{stringliteral}{"{}Ruta"{}},\textcolor{stringliteral}{"{}Tomas"{}},\textcolor{stringliteral}{"{}Ieva"{}}\};}
+\DoxyCodeLine{00013\ vector<string>\ lastNames=\{\textcolor{stringliteral}{"{}Petraitis"{}},\textcolor{stringliteral}{"{}Kazlauskas"{}},\textcolor{stringliteral}{"{}Jankauskas"{}},\textcolor{stringliteral}{"{}Stankevicius"{}},\textcolor{stringliteral}{"{}Vilkas"{}},\textcolor{stringliteral}{"{}Daugela"{}},\textcolor{stringliteral}{"{}Miskinis"{}},\textcolor{stringliteral}{"{}Jankauskiene"{}},\textcolor{stringliteral}{"{}Zalys"{}},\textcolor{stringliteral}{"{}Baranauskas"{}}\};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{char}\ testi=\textcolor{charliteral}{'t'};}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ ii=1;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keywordflow}{while}(testi==\textcolor{charliteral}{'t'}\ ||\ testi==\textcolor{charliteral}{'T'})\ \{}
+\DoxyCodeLine{00019\ A.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}()\ =\ firstNames[rand()\ \%\ firstNames.size()];}
+\DoxyCodeLine{00020\ A.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}()\ =\ lastNames[rand()\ \%\ lastNames.size()];}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ n\ =\ rand()\%10\ +\ 1;}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{int}\ sum\ =\ 0;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ cout<<\textcolor{stringliteral}{"{}Sugeneruotas\ "{}}<<ii<<\textcolor{stringliteral}{"{}\ studentas:\ "{}}<<A.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}()<<\textcolor{stringliteral}{"{}\ "{}}<<A.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}()<<\textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00026\ cout<<\textcolor{stringliteral}{"{}Random\ namu\ darbu\ pazymiai:\(\backslash\)n"{}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<n;i++)\ \{}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{int}\ temp\ =\ rand()\%10\ +\ 1;}
+\DoxyCodeLine{00030\ \ \ \ \ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().push\_back(temp);}
+\DoxyCodeLine{00031\ sum\ +=\ temp;}
+\DoxyCodeLine{00032\ \ \ \ \ cout<<temp<<\textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ cout<<endl;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()\ =\ (rand()\ \%\ 10)\ +\ 1;}
+\DoxyCodeLine{00037\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Random\ egzamino\ pazymys:\ "{}}<<A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()<<endl;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().push\_back(A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}());}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ std::sort(A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().begin(),\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().end());}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{int}\ kiekis\ =\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().size();}
+\DoxyCodeLine{00044\ \textcolor{keywordflow}{if}(kiekis\ ==\ 0)\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(kiekis\ \%\ 2\ ==\ 0)\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ (A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2\ -\/\ 1]\ +\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2])\ /\ 2.0;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{else}\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2];}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().pop\_back();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ A.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}()\ =\ sum*1.0/(n*1.0)*0.4\ +\ A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()*0.6;}
+\DoxyCodeLine{00051\ \ \ \ \ grupe.push\_back(A);}
+\DoxyCodeLine{00052\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().clear();\ }
+\DoxyCodeLine{00053\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Spauskite\ t,\ jei\ norite\ sugeneruoti\ kita\ studenta\ "{}}<<endl;}
+\DoxyCodeLine{00054\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Jei\ baigete\ studentu\ generavima,\ spauskite\ bet\ koki\ (ne\ t)\ simboli"{}}<<endl;}
+\DoxyCodeLine{00055\ \ \ \ \ cin>>testi;}
+\DoxyCodeLine{00056\ \ \ \ \ ii++;}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STUDENTAIRANDOM\_IMPL\_H}}
+
+\end{DoxyCode}

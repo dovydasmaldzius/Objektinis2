@@ -1,0 +1,105 @@
+\doxysection{inputbyhand\+\_\+impl.\+h}
+\hypertarget{inputbyhand__impl_8h_source}{}\label{inputbyhand__impl_8h_source}\doxymbox{\hyperlink{inputbyhand__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ INPUTBYHAND\_IMPL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ INPUTBYHAND\_IMPL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{funkcions_8h}{funkcions.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_studentas_8h}{Studentas.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{includes_8h}{includes.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Container>}
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{inputbyhand__impl_8h_aa71e2585bdd8d074647af68b5c4fd2be}{RankinisIvedimas}}(Container\&\ grupe)\{}
+\DoxyCodeLine{00010\ \doxymbox{\hyperlink{class_studentas}{Studentas}}\ A;}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{char}\ testistud=\textcolor{charliteral}{'t'};}
+\DoxyCodeLine{00012\ \textcolor{keywordflow}{while}(testistud==\textcolor{charliteral}{'t'}\ ||\ testistud==\textcolor{charliteral}{'T'})\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Iveskite\ varda\ ir\ pavarde:\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00017\ cin>>A.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}()>>A.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}();}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{bool}\ hasDigit\ =\ std::any\_of(A.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}().begin(),\ A.\doxymbox{\hyperlink{class_zmogus_a28b6afa01530ea6d40025e7d9d4f522c}{vardas}}().end(),\ [](\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c)\{\ return\ std::isdigit(c);\ \})\ ||\ std::any\_of(A.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}().begin(),\ A.\doxymbox{\hyperlink{class_zmogus_a6917290de2e3b30fa0a04d636e0339ec}{pavarde}}().end(),\ [](\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ c)\{\ return\ std::isdigit(c);\ \});}
+\DoxyCodeLine{00019\ \textcolor{keywordflow}{if}(hasDigit)\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Prasome\ ivesti\ tik\ raides!"{}});}
+\DoxyCodeLine{00021\ \textcolor{keywordflow}{continue};\ \}}
+\DoxyCodeLine{00022\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ cout\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00026\ cin.clear();}
+\DoxyCodeLine{00027\ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{char}\ testipaz\ =\ \textcolor{charliteral}{'t'};}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{int}\ temp;\ \textcolor{comment}{//laikinas\ pažymys}}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ sum=0;}
+\DoxyCodeLine{00034\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Iveskite\ visus\ pazymius\(\backslash\)n"{}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordflow}{while}(testipaz==\textcolor{charliteral}{'t'}\ ||\ testipaz==\textcolor{charliteral}{'T'})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}iveskite\ pazymi:\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00040\ cin\ >>\ temp;}
+\DoxyCodeLine{00041\ \textcolor{keywordflow}{if}(cin.fail())\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Prasome\ ivesti\ tik\ skaicius!"{}});}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ \textcolor{keywordflow}{if}(temp\ <\ 1\ ||\ temp\ >\ 10)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Prasome\ ivesti\ skaiciu\ nuo\ 1\ iki\ 10!"{}});}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().push\_back(temp);}
+\DoxyCodeLine{00048\ sum\ +=\ temp;}
+\DoxyCodeLine{00049\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ cout\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00053\ cin.clear();}
+\DoxyCodeLine{00054\ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Spauskite\ t,\ jei\ norite\ ivesti\ dar\ viena\ pazymi\ "{}}<<endl;}
+\DoxyCodeLine{00059\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Jei\ baigete\ pazymiu\ ivedima,\ spauskite\ bet\ koki\ (ne\ t)\ simboli"{}}<<endl;}
+\DoxyCodeLine{00060\ cin>>testipaz;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}iveskite\ egzamino\ pazymi:\ \(\backslash\)n"{}};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00066\ cin>>A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}();}
+\DoxyCodeLine{00067\ \textcolor{keywordflow}{if}(cin.fail())\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Prasome\ ivesti\ tik\ skaicius!"{}});}
+\DoxyCodeLine{00069\ \}}
+\DoxyCodeLine{00070\ \textcolor{keywordflow}{if}(A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()\ <\ 1\ ||\ A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()\ >\ 10)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::out\_of\_range(\textcolor{stringliteral}{"{}Prasome\ ivesti\ skaiciu\ nuo\ 1\ iki\ 10!"{}});}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{catch}(\textcolor{keyword}{const}\ std::exception\&\ e)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ cout\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{00077\ cin.clear();}
+\DoxyCodeLine{00078\ cin.ignore(numeric\_limits<streamsize>::max(),\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().push\_back(A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}());}
+\DoxyCodeLine{00083\ std::sort(A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().begin(),\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().end());}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{int}\ kiekis\ =\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().size();}
+\DoxyCodeLine{00086\ \textcolor{keywordflow}{if}(kiekis\ ==\ 0)\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(kiekis\ \%\ 2\ ==\ 0)\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ (A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2\ -\/\ 1]\ +\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2])\ /\ 2.0;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{else}\ A.\doxymbox{\hyperlink{class_studentas_ae0ee7df2386fe096f3c01c12e416cc55}{mediana}}()\ =\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}()[kiekis/2];}
+\DoxyCodeLine{00089\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().pop\_back();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ A.\doxymbox{\hyperlink{class_studentas_a1e8b512adfd56a00eee038ca798f36bb}{rezultatas}}()=sum*1.0/(A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().size()*1.0)*0.4+A.\doxymbox{\hyperlink{class_studentas_a17483a172b493a619475a34e1e082653}{egzaminas}}()*0.6;}
+\DoxyCodeLine{00092\ grupe.push\_back(A);}
+\DoxyCodeLine{00093\ A.\doxymbox{\hyperlink{class_studentas_aa39ede5d83cf0beca3c797d3a8a4a8d8}{paz}}().clear();}
+\DoxyCodeLine{00094\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Spauskite\ t,\ jei\ norite\ ivesti\ kita\ studenta\ "{}}<<endl;}
+\DoxyCodeLine{00095\ \ \ \ \ cout<<\textcolor{stringliteral}{"{}Jei\ baigete\ studentu\ ivedima,\ spauskite\ bet\ koki\ (ne\ t)\ simboli"{}}<<endl;}
+\DoxyCodeLine{00096\ cin>>testistud;}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INPUTBYHAND\_IMPL\_H}}
+
+\end{DoxyCode}
