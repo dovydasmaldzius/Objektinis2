@@ -1,0 +1,67 @@
+[OPTIONS]
+Compiled file=index.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=v2.0
+
+[WINDOWS]
+main="v2.0","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+_generatorius_8cpp.html
+_laiko_matavimas_8cpp.html
+_strategijos_8h.html
+_strategijos_8h_source.html
+_studentas_8cpp.html
+_studentas_8h.html
+_studentas_8h_source.html
+_zmogus_8h.html
+_zmogus_8h_source.html
+annotated.html
+class_studentas-members.html
+class_studentas.html
+class_zmogus-members.html
+class_zmogus.html
+classes.html
+doxygen_crawl.html
+files.html
+functions.html
+functions_func.html
+functions_rela.html
+functions_vars.html
+funkcions_8h.html
+funkcions_8h_source.html
+globals.html
+globals_defs.html
+globals_func.html
+globals_type.html
+hierarchy.html
+includes_8h.html
+includes_8h_source.html
+index.html
+input__impl_8h.html
+input__impl_8h_source.html
+inputbyhand__impl_8h.html
+inputbyhand__impl_8h_source.html
+nuskaitymas__impl_8h.html
+nuskaitymas__impl_8h_source.html
+output__impl_8h.html
+output__impl_8h_source.html
+pazymiairandom__impl_8h.html
+pazymiairandom__impl_8h_source.html
+studentairandom__impl_8h.html
+studentairandom__impl_8h_source.html
+testuoti__impl_8h.html
+testuoti__impl_8h_source.html
+v2_80_8cpp.html
+class_studentas.png
+class_zmogus.png
+doxygen.svg
+doxygen.css
+navtree.css
+tabs.css
