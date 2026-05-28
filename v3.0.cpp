@@ -3,7 +3,7 @@
 #include "funkcions.h"
 #include "Strategijos.h"
 
-using StudContainer = std::vector<Studentas>; //naudojama vektoriaus konteinerio tipas, kad būtų galima lengvai keisti konteinerį
+using StudContainer = vector<Studentas>; //naudojama vektoriaus konteinerio tipas, kad būtų galima lengvai keisti konteinerį
 //using StudContainer = std::list<Studentas>;
 //using StudContainer = std::deque<Studentas>;
 
@@ -37,26 +37,31 @@ cin.clear(); //klaida išvaloma, kad būtų galima vėl įvesti duomenis
 cin.ignore(numeric_limits<streamsize>::max(), '\n'); //pašalinami netinkami įvesties duomenys, kad būtų galima vėl įvesti duomenis
 }
 }
-    if(pasirinkimas==1) RankinisIvedimas(grupe);
+if(pasirinkimas==1) RankinisIvedimas(grupe);
     else if(pasirinkimas==2) RandomPazymiai(grupe);
     else if(pasirinkimas==3) RandomStudentai(grupe);
     else if(pasirinkimas==4) Nuskaitymas(grupe, rusiavimas);
     else if(pasirinkimas==5) {
 vector<int> dydziai={1000,10000,100000,1000000,10000000};
-
 for(int n : dydziai) {
-string failas = "studentai" + to_string(n) + ".txt"; //kuriami failu pavadinimai
+    string failas = "studentai" + to_string(n) + ".txt"; //kuriami failu pavadinimai
 
 auto start = std::chrono::high_resolution_clock::now();
 GeneruotiFaila(failas,n);
 
 auto end = std::chrono::high_resolution_clock::now();
 std::chrono::duration<double> diff = end - start;
-
-cout<<failas<<" sukurtas per "<<diff.count()<<" s\n"; }
+    cout<<failas<<" sukurtas per "<<diff.count()<<" s\n";
 }
-else if(pasirinkimas==6) { 
+return 0;
+}
+else if(pasirinkimas==6) {
 LaikoMatavimas();
+return 0;
 }
 Isvedimas(grupe, pasirinkimas, rusiavimas); //duomenų išvedimas
-};
+return 0;
+cout<<"\nSpauskite Enter, kad Uzdarytumete programa...\n";
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+cin.get(); 
+}
