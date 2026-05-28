@@ -7,7 +7,7 @@ class Studentas : public Zmogus { // Studentas paveldi iš Žmogus, todėl jis t
 
 private:
 
-std::vector<int> paz_;
+vector<int> paz_;
 int egzaminas_;
 double rezultatas_;
 double mediana_;
@@ -34,20 +34,20 @@ friend std::istream& operator>>(std::istream& is, Studentas& s); //friend funkci
 friend std::ostream& operator<<(std::ostream& os, const Studentas& s);
 
 // Getteriai
-std::vector<int>& paz(){ return paz_; }
-const std::vector<int>& paz() const { return paz_; }
+vector<int>& paz(){ return paz_; }
+const vector<int>& paz() const { return paz_; }
 
 int& egzaminas() { return egzaminas_; }
-    const int egzaminas() const { return egzaminas_; }
+    int egzaminas() const { return egzaminas_; }
 double& rezultatas() { return rezultatas_; }
-    const double rezultatas() const { return rezultatas_; }
+    double rezultatas() const { return rezultatas_; }
 double& mediana() { return mediana_; }
-    const double mediana() const { return mediana_; }
+    double mediana() const { return mediana_; }
 
 // Setteriai
 void addPaz(int p){ paz_.push_back(p); }
-void setPaz(const std::vector<int>& p){ paz_ = p; }
-void setPaz(std::vector<int>&& p){ paz_ = std::move(p); }
+void setPaz(const vector<int>& p){ paz_ = p; }
+void setPaz(vector<int>&& p){ paz_ = std::move(p); }
 void setEgzaminas(int e){ egzaminas_ = e; }
 void setRezultatas(double r){ rezultatas_ = r; }
 void setMediana(double m){ mediana_ = m; }
