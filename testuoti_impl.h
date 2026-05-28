@@ -8,7 +8,6 @@
 
 template <typename Container>
 void TestuotiGreiti(const string& failas) {
-
     Container studentai;
 auto pr = std::chrono::high_resolution_clock::now();
     NuskaitymasIsFailo(failas, studentai);
@@ -21,11 +20,13 @@ auto pa = std::chrono::high_resolution_clock::now();
 auto prad = std::chrono::high_resolution_clock::now();
 if constexpr (std::is_same_v<Container, list<Studentas>>) {
     rusiuoti.sort([](const Studentas& a, const Studentas& b) {
-return a.rezultatas() < b.rezultatas(); });
+        return a.rezultatas() < b.rezultatas();
+    });
 }
 else {
-    sort(rusiuoti.begin(), rusiuoti.end(), [](const Studentas& a, const Studentas& b) {
-return a.rezultatas() < b.rezultatas(); });
+    std::sort(rusiuoti.begin(), rusiuoti.end(), [](const Studentas& a, const Studentas& b) {
+        return a.rezultatas() < b.rezultatas();
+    });
 }
     auto pab = std::chrono::high_resolution_clock::now();
     cout<<"Rusiavimas: "<<duration<double>(pab-prad).count()<<" s\n\n";
