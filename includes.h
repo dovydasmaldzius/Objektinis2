@@ -20,7 +20,9 @@
 #include <type_traits>
 
 using std::string;
-using std::vector;
+#include "Vector.h"
+template<typename T>
+using vector = Vector<T>;
 using std::list;
 using std::deque;
 using std::cout;
