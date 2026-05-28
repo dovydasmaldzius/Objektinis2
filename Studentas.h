@@ -38,11 +38,11 @@ std::vector<int>& paz(){ return paz_; }
 const std::vector<int>& paz() const { return paz_; }
 
 int& egzaminas() { return egzaminas_; }
-    const int egzaminas() const { return egzaminas_; }
+    int egzaminas() const { return egzaminas_; }
 double& rezultatas() { return rezultatas_; }
-    const double rezultatas() const { return rezultatas_; }
+    double rezultatas() const { return rezultatas_; }
 double& mediana() { return mediana_; }
-    const double mediana() const { return mediana_; }
+    double mediana() const { return mediana_; }
 
 // Setteriai
 void addPaz(int p){ paz_.push_back(p); }
