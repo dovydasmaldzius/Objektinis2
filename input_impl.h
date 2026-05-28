@@ -14,7 +14,7 @@ void Nuskaitymas(Container& grupe, int &rusiavimas) {
     cout<<"2 - rusiuoti pagal pavarde \n";
     cout<<"3 - rusiuoti pagal galutini rezultata \n";
     cin>>rusiavimas;
-std::ifstream fd("kursiokai.txt");
+std::ifstream fd("kursiokai1mln.txt");
 string temp;
 getline(fd, temp); //nuskaitoma antraste
 
