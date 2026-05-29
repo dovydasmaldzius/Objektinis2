@@ -17,44 +17,45 @@
  * similar functionality to std::vector. It manages its own memory allocation
  * and deallocation, and automatically grows when needed.
  */
-template<typename T>
+template<typename T> //naudojamas šablonas, kad būtų galima naudoti bet kokio tipo duomenis
 class Vector {
 public:
-    using value_type = T;
-    using size_type = std::size_t;
-    using difference_type = std::ptrdiff_t;
-    using reference = T&;
+    using value_type = T; //galima keisti duomenų tipą
+    using size_type = std::size_t; // galima keisti dydį
+    using difference_type = std::ptrdiff_t; // galima keisti skirtumą (skirtumas - tai atstumas tarp dviejų elementų)
+    using reference = T&; // galima keisti nuorodą
     using const_reference = const T&;
-    using pointer = T*;
-    using const_pointer = const T*;
+    using pointer = T*; // galima keisti rodyklę
+    using const_pointer = const T*; 
 
 class iterator {
 public:
-    using iterator_category = std::random_access_iterator_tag;
+    using iterator_category = std::random_access_iterator_tag; // taikomas standartinėmis algoritmų funkcijomis, kurios reikalauja tam tikros iteratoriaus kategorijos
     using value_type = T;
     using difference_type = std::ptrdiff_t;
     using pointer = T*;
     using reference = T&;
 
-iterator(pointer ptr = nullptr) : ptr_(ptr) {}
+iterator(pointer ptr = nullptr) : ptr_(ptr) {} //konstruktorius, kuris inicializuoja iteratorių su rodykle į elementą arba nullptr
 
-reference operator*() const { return *ptr_; }
-pointer operator->() const { return ptr_; }
+reference operator*() const { return *ptr_; } // operatorius *, kuris grąžina nuorodą į elementą, į kurį rodo iteratorius
+pointer operator->() const { return ptr_; } // operatorius ->, kuris grąžina rodyklę į elementą, į kurį rodo iteratorius
         
-iterator& operator++() { ++ptr_; return *this; }
-iterator operator++(int) { iterator tmp = *this; ++ptr_; return tmp; }
-iterator& operator--() { --ptr_; return *this; }
-iterator operator--(int) { iterator tmp = *this; --ptr_; return tmp; }
+iterator& operator++() { ++ptr_; return *this; } // operatorius ++ (pre-increment), kuris padidina iteratorių ir grąžina nuorodą į jį patį
+iterator operator++(int) { iterator tmp = *this; ++ptr_; return tmp; } // operatorius ++ (post-increment), kuris padidina iteratorių, bet grąžina jo vertę prieš padidinimą
+iterator& operator--() { --ptr_; return *this; } // operatorius -- (pre-decrement), kuris sumažina iteratorių ir grąžina nuorodą į jį patį
+iterator operator--(int) { iterator tmp = *this; --ptr_; return tmp; } // operatorius -- (post-decrement), kuris sumažina iteratorių, bet grąžina jo vertę prieš sumažinimą
         
-iterator operator+(difference_type n) const { return iterator(ptr_ + n); }
-iterator operator-(difference_type n) const { return iterator(ptr_ - n); }
-difference_type operator-(const iterator& other) const { return ptr_ - other.ptr_; }
+iterator operator+(difference_type n) const { return iterator(ptr_ + n); } // operatorius +, kuris grąžina naują iteratorių, kuris yra n pozicijų toliau nuo dabartinio
+iterator operator-(difference_type n) const { return iterator(ptr_ - n); } // operatorius -, kuris grąžina naują iteratorių, kuris yra n pozicijų arčiau dabartinio
+difference_type operator-(const iterator& other) const { return ptr_ - other.ptr_; } // operatorius -, kuris grąžina skirtumą tarp dviejų iteratorių (kiek pozicijų yra tarp jų)
         
-iterator& operator+=(difference_type n) { ptr_ += n; return *this; }
-iterator& operator-=(difference_type n) { ptr_ -= n; return *this; }
+iterator& operator+=(difference_type n) { ptr_ += n; return *this; } // operatorius +=, kuris padidina iteratorių n pozicijų ir grąžina nuorodą į jį patį
+iterator& operator-=(difference_type n) { ptr_ -= n; return *this; } // operatorius -=, kuris sumažina iteratorių n pozicijų ir grąžina nuorodą į jį patį
         
-reference operator[](difference_type n) const { return ptr_[n]; }
-        
+reference operator[](difference_type n) const { return ptr_[n]; } // operatorius [], kuris grąžina nuorodą į elementą, kuris yra n pozicijų toliau nuo dabartinio iteratoriaus
+
+// Operatoriai lyginimo, kurie leidžia palyginti du iteratorius ir grąžinti true arba false, priklausomai nuo jų pozicijos vektoriuje
 bool operator==(const iterator& other) const { return ptr_ == other.ptr_; }
 bool operator!=(const iterator& other) const { return ptr_ != other.ptr_; }
 bool operator<(const iterator& other) const { return ptr_ < other.ptr_; }
@@ -63,8 +64,8 @@ bool operator>(const iterator& other) const { return ptr_ > other.ptr_; }
 bool operator>=(const iterator& other) const { return ptr_ >= other.ptr_; }
 
 private:
-pointer ptr_;
-friend class Vector;
+pointer ptr_; // vidinė rodyklė, kuri nurodo į elementą, į kurį rodo iteratorius
+friend class Vector; // leidžia Vector klasei pasiekti privataus iteratoriaus narių, kad būtų galima sukurti iteratorius iš Vector metodų
 };
 
 class const_iterator {
@@ -75,8 +76,8 @@ public:
     using pointer = const T*;
     using reference = const T&;
 
-const_iterator(pointer ptr = nullptr) : ptr_(ptr) {}
-const_iterator(const iterator& it) : ptr_(it.ptr_) {}
+const_iterator(pointer ptr = nullptr) : ptr_(ptr) {} //konstruktorius, kuris inicializuoja const_iteratorių su rodykle į elementą arba nullptr
+const_iterator(const iterator& it) : ptr_(it.ptr_) {} //konstruktorius, kuris konvertuoja iteratorių į const_iteratorių, leidžiantį naudoti const_iteratorius vietoj iteratorių, kai reikia konstantos
 
     reference operator*() const { return *ptr_; }
     pointer operator->() const { return ptr_; }
@@ -556,11 +557,11 @@ for (size_type i = 0; i < size_; ++i) {
     new (&new_data[i]) T(std::move(data_[i]));
     data_[i].~T();
 }
-        
-deallocate_memory(data_);
+
+deallocate_memory(data_); // Išvalome seną atmintį, talpą atnaujiname į naują
 data_ = new_data;
 capacity_ = new_capacity;
-++reallocation_count_;
+++reallocation_count_; // Skaičiuojame, kiek kartų įvyko perreikalavimas
 }
 };
 
